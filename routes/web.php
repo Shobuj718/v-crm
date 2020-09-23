@@ -21,4 +21,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/dashboard', 'Admin\DashboardController@dashboard')->name('dashboard');
+Route::group(['namespace' => 'Admin'], function(){
+
+	Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+
+	//company all route
+	Route::get('/add-company', 'CompanyController@addCompany')->name('add.company');
+	Route::get('/company-list', 'CompanyController@companyList')->name('company.list');
+
+
+	//member all route
+	Route::get('/add-member', 'MemberController@addMember')->name('add.member');
+	Route::get('/member-list', 'MemberController@memberList')->name('member.list');
+
+});
+

@@ -22,8 +22,8 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview @yield('company')">
+            <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Companies
@@ -32,13 +32,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link active">
+                <a href="{{ route('company.list') }}" class="nav-link @yield('company-list')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Companly List</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ route('add.company') }}" class="nav-link @yield('company-add')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Company</p>
                 </a>
@@ -46,8 +46,8 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview @yield('member')">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Members
@@ -56,13 +56,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ route('member.list') }}" class="nav-link @yield('member-list')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Members List</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ route('add.member') }}" class="nav-link @yield('add-member')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Member</p>
                 </a>
@@ -70,7 +70,8 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview">
+          
+          <li class="nav-item has-treeview @yield('category')">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -80,13 +81,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('category-list')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Category List</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('add-category')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Category</p>
                 </a>
@@ -94,7 +95,7 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview @yield('expire')">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -104,7 +105,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('expire-list')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Expires List</p>
                 </a>
@@ -112,7 +113,7 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview @yield('report')">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -122,43 +123,43 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('income')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Income</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('expense')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Expense</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('income-expense')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Income/Expense</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('due-installment')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Due Installment</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('passport-expired')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Passport Expired</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('visa-expired')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Visa Expired</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
+                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('cidb-submission')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>CIDB Submission</p>
                 </a>
@@ -166,29 +167,7 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Members
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Members List</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Member</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          
 
           <li class="nav-item">
             <a href="#" class="nav-link">

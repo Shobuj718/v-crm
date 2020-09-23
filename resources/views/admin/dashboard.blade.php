@@ -1,5 +1,8 @@
 @extends('master')
 
+@section('menu-open', 'menu-open')
+@section('active', 'active')
+
 @section('page-header')
 	<h2>Dashboard</h2>
 @endsection
