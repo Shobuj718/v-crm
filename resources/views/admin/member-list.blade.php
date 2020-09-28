@@ -6,12 +6,12 @@
   <link rel="stylesheet" href="{{ asset('/adminlte/') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 @endsection
 
-@section('company', 'menu-open')
-@section('company-nav-link', 'active')
-@section('company-list', 'active')
+@section('category', 'menu-open')
+@section('category-nav-link', 'active')
+@section('category-list', 'active')
 
 @section('page-header')
-	<h2>Company List</h2>
+	<h2>Category List</h2>
 @endsection
 
 @section('content')
@@ -26,8 +26,8 @@
                   <thead>
                   <tr>
                     <th>SL</th>
-                    <th>Company Name</th>
-                    <th>Company Address</th>
+                    <th>Passport No</th>
+                    <th>Passport Name</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -35,8 +35,8 @@
                   
                   <tr>
                     <td>1</td>
-                    <td>Comapny One</td>
-                    <td>Malayasia</td>
+                    <td>Pass One</td>
+                    <td>Shobuj</td>
                     <td>
                     	 <div class="btn-group">
 		                    <button type="button" class="btn btn-success">Action</button>
@@ -44,8 +44,11 @@
 		                      <span class="sr-only">Toggle Dropdown</span>
 		                      <div class="dropdown-menu" role="menu">
 		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">SMS Passport</a>
+                            <a class="dropdown-item" href="#">SMS Visa</a>
+		                        <a class="dropdown-item" href="#">SMS Visa Collect</a>
+		                        <a class="dropdown-item" href="#">Remove</a>
 		                      </div>
 		                    </button>
 		                 </div>
@@ -54,8 +57,8 @@
                   
                   <tr>
                     <td>2</td>
-                    <td>Comapny Two</td>
-                    <td>Malayasia</td>
+                    <td>Pass Two</td>
+                    <td>Wadud</td>
                     <td>
                     <div class="btn-group">
 		                    <button type="button" class="btn btn-success">Action</button>
@@ -73,8 +76,8 @@
 
                   <tr>
                     <td>3</td>
-                    <td>Comapny Three</td>
-                    <td>Malayasia</td>
+                    <td>Passs Three</td>
+                    <td>Shamim</td>
                     <td>
                     	<div class="btn-group">
 		                    <button type="button" class="btn btn-success">Action</button>

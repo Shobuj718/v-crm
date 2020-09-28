@@ -23,7 +23,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
           <li class="nav-item has-treeview @yield('company')">
-            <a href="#" class="nav-link ">
+            <a href="#" class="nav-link @yield('company-nav-link')">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Companies
@@ -47,7 +47,7 @@
           </li>
 
           <li class="nav-item has-treeview @yield('member')">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link @yield('member-nav-link')">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Members
@@ -72,7 +72,7 @@
 
           
           <li class="nav-item has-treeview @yield('category')">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link @yield('category-nav-link')">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Category
@@ -81,13 +81,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('category-list')">
+                <a href="{{ route('category.list') }}" class="nav-link @yield('category-list')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Category List</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('add-category')">
+                <a href="{{ route('add.category') }}" class="nav-link @yield('add-category')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Category</p>
                 </a>
@@ -95,26 +95,34 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview @yield('expire')">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview @yield('expense')">
+            <a href="#" class="nav-link @yield('expense-nav-link')">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Expires
+                Expense
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('expire-list')">
+                <a href="{{ route('expense.category.add') }}" class="nav-link @yield('expense-add')">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Expires List</p>
+                  <p>Expense </p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('expense.category.list') }}" class="nav-link @yield('expense-list')">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Category </p>
                 </a>
               </li>
             </ul>
           </li>
 
           <li class="nav-item has-treeview @yield('report')">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link @yield('report-nav-link')">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Reports
@@ -169,11 +177,28 @@
 
           
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-info"></i>
-              <p>Users</p>
+          <li class="nav-item has-treeview @yield('user')">
+            <a href="#" class="nav-link @yield('user-nav-link')">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                User
+                <i class="right fas fa-angle-left"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('user.list') }}" class="nav-link @yield('user-list')">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('add.user') }}" class="nav-link @yield('add-user')">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add User</p>
+                </a>
+              </li>
+            </ul>
           </li>
           
         </ul>

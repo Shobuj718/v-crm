@@ -6,12 +6,12 @@
   <link rel="stylesheet" href="{{ asset('/adminlte/') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 @endsection
 
-@section('company', 'menu-open')
-@section('company-nav-link', 'active')
-@section('company-list', 'active')
+@section('category', 'menu-open')
+@section('category-nav-link', 'active')
+@section('category-list', 'active')
 
 @section('page-header')
-	<h2>Company List</h2>
+	<h2>Category List</h2>
 @endsection
 
 @section('content')
@@ -26,8 +26,8 @@
                   <thead>
                   <tr>
                     <th>SL</th>
-                    <th>Company Name</th>
-                    <th>Company Address</th>
+                    <th>Category Name</th>
+                    <th>Category Details</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -35,7 +35,7 @@
                   
                   <tr>
                     <td>1</td>
-                    <td>Comapny One</td>
+                    <td>Category One</td>
                     <td>Malayasia</td>
                     <td>
                     	 <div class="btn-group">
@@ -54,7 +54,7 @@
                   
                   <tr>
                     <td>2</td>
-                    <td>Comapny Two</td>
+                    <td>Category Two</td>
                     <td>Malayasia</td>
                     <td>
                     <div class="btn-group">
@@ -73,7 +73,7 @@
 
                   <tr>
                     <td>3</td>
-                    <td>Comapny Three</td>
+                    <td>Category Three</td>
                     <td>Malayasia</td>
                     <td>
                     	<div class="btn-group">

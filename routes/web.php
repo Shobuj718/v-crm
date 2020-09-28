@@ -34,5 +34,17 @@ Route::group(['namespace' => 'Admin'], function(){
 	Route::get('/add-member', 'MemberController@addMember')->name('add.member');
 	Route::get('/member-list', 'MemberController@memberList')->name('member.list');
 
+	//user all route
+	Route::get('/add-user', 'UserController@addUser')->name('add.user');
+	Route::get('/user-list', 'UserController@userList')->name('user.list');
+
+	//category all route
+	Route::get('/add-category', 'CategoryController@addCategory')->name('add.category');
+	Route::get('/category-list', 'CategoryController@categoryList')->name('category.list');
+
+	//category all route
+	Route::get('/add-expense-category', 'ExpenseCategoryController@addCategory')->name('expense.category.add');
+	Route::get('/expense-category-list', 'ExpenseCategoryController@categoryList')->name('expense.category.list');
+
 });
 

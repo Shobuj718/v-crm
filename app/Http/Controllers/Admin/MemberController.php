@@ -11,6 +11,6 @@ class MemberController extends Controller
     	return view('admin.add-member');
     }
     public function memberList(){
-    	return view('admin.add-member');
+    	return view('admin.member-list');
     }
 }
