@@ -27,7 +27,11 @@ Route::group(['namespace' => 'Admin'], function(){
 
 	//company all route
 	Route::get('/add-company', 'CompanyController@addCompany')->name('add.company');
+	Route::post('/add-company', 'CompanyController@storeCompany')->name('store.company');
 	Route::get('/company-list', 'CompanyController@companyList')->name('company.list');
+	Route::get('/edit-company/{uid}/{slug}', 'CompanyController@editCompany')->name('edit.company');
+	Route::post('/update-company/{uid}', 'CompanyController@updateCompany')->name('update.company');
+	Route::get('/delete-company/{uid}', 'CompanyController@deleteCompany')->name('delete.company');
 
 
 	//member all route

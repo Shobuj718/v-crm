@@ -6,9 +6,9 @@
   <link rel="stylesheet" href="{{ asset('/adminlte/') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 @endsection
 
-@section('category', 'menu-open')
-@section('category-nav-link', 'active')
-@section('category-list', 'active')
+@section('member', 'menu-open')
+@section('member-nav-link', 'active')
+@section('member-list', 'active')
 
 @section('page-header')
 	<h2>Category List</h2>

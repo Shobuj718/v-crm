@@ -19,7 +19,7 @@
          <div class="col-md-8">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Company</h3>
+                <h3 class="card-title">Update Company</h3>
               </div>
               
               <div class="alert alert-success" role="alert" style="display:none;margin-top: 10px">
@@ -29,22 +29,22 @@
                   <span class="error"></span>
               </div>
 
-              <form role="form" id="addCompany">
+              <form role="form" id="updateCompany">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label>Name<span class="requird">*</span></label>
-                      <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Enter company name">
+                      <input type="text" name="company_name" id="company_name" value="{{ $company->company_name }}" class="form-control" placeholder="Enter company name">
                   </div>
                   <div class="form-group">
                     <label>Address</label>
-                          <textarea class="form-control" name="company_address" id="company_address" rows="3" placeholder="Enter company address"></textarea>
+                          <textarea class="form-control" name="company_address" id="company_address" rows="3" placeholder="Enter company address">{{ $company->company_address }}</textarea>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-success">Submit</button>
-                  <a type="submit" class="btn btn-warning" onclick="clearForm()">Clear</a>
+                  <button type="submit" class="btn btn-success">Update</button>
+                  <!-- <a type="submit" class="btn btn-warning" onclick="clearForm()">Clear</a> -->
                 </div>
               </form>
             </div>
@@ -63,7 +63,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
   
-  $('#addCompany').validate({
+  $('#updateCompany').validate({
     rules: {
       company_name: {
         required: true,
@@ -88,11 +88,11 @@ $(document).ready(function () {
       //alert( "Form successful submitted!" );
 
       console.log('Called');
-          var form = $('#addCompany')[0];       
+          var form = $('#updateCompany')[0];       
           var bodyFormData = new FormData(form);    
           axios({
               method: 'post',
-              url: "{{route('store.company')}}",
+              url: "{{route('update.company', $company->uid)}}",
               data: bodyFormData,
               headers: {'Content-Type': 'multipart/form-data' }
           })
@@ -102,7 +102,6 @@ $(document).ready(function () {
               if(response.data.status == 'success'){
                   $('.alert-success').css("display", "block");
                   $('.success').html(response.data.message).show();
-                  $("#addCompany")[0].reset();
                   window.location.href = response.data.redirect_url;
               }else{
                 $('.error').html(response.data.message).show().delay(5000).fadeOut();
@@ -118,12 +117,10 @@ $(document).ready(function () {
   });
 
 
-
 });
 
 function clearForm(){
-    $("#addCompany")[0].reset();
+    $("#updateCompany")[0].reset();
   }
-
 </script>
 @endsection

@@ -20,6 +20,17 @@
           <div class="col-12">
             
             <div class="card">
+
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
               
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -33,63 +44,20 @@
                   </thead>
                   <tbody>
                   
-                  <tr>
-                    <td>1</td>
-                    <td>Comapny One</td>
-                    <td>Malayasia</td>
+                  @foreach($companies as $company)
+                  <tr>                    
+                    <td>{{ $company->id ?? '' }}</td>
+                    <td>{{ $company->company_name ?? '' }}</td>
+                    <td>{{ $company->company_address ?? '' }}</td>
                     <td>
-                    	 <div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
-		                      </div>
-		                    </button>
-		                 </div>
-                    </td>
-                  </tr>
-                  
-                  <tr>
-                    <td>2</td>
-                    <td>Comapny Two</td>
-                    <td>Malayasia</td>
-                    <td>
-                    <div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
-		                      </div>
-		                    </button>
-		                 </div>
+                    <a href="{{ route('edit.company',[ $company->uid, $company->slug]) }}" class="btn btn-info btn-xs">Edit</a>
+                    <a href="{{ route('delete.company', $company->uid) }}" class="btn btn-danger btn-xs">Delete</a>
+                       
                     </td>
                   </tr>
 
-                  <tr>
-                    <td>3</td>
-                    <td>Comapny Three</td>
-                    <td>Malayasia</td>
-                    <td>
-                    	<div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
-		                        
-		                      </div>
-		                    </button>
-		                 </div>
-                    </td>
-                  </tr>
+                  @endforeach
+                  
                   
                   </tfoot>
                 </table>
