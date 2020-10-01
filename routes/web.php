@@ -40,11 +40,19 @@ Route::group(['namespace' => 'Admin'], function(){
 
 	//user all route
 	Route::get('/add-user', 'UserController@addUser')->name('add.user');
+	Route::post('/store-user', 'UserController@storeUser')->name('store.user');
 	Route::get('/user-list', 'UserController@userList')->name('user.list');
+	Route::get('/edit-user/{uid}', 'UserController@editUser')->name('edit.user');
+	Route::post('/update-user/{uid}', 'UserController@updateUser')->name('update.user');
+	Route::get('/delete-user/{uid}', 'UserController@deleteUser')->name('delete.user');
 
 	//category all route
 	Route::get('/add-category', 'CategoryController@addCategory')->name('add.category');
+	Route::post('/add-category', 'CategoryController@storeCategory')->name('store.category');
 	Route::get('/category-list', 'CategoryController@categoryList')->name('category.list');
+	Route::get('/edit-category/{uid}/{slug}', 'CategoryController@editCategory')->name('edit.category');
+	Route::post('/update-category/{uid}', 'CategoryController@updateCategory')->name('update.category');
+	Route::get('/delete-category/{uid}', 'CategoryController@deleteCategory')->name('delete.category');
 
 	//category all route
 	Route::get('/add-expense-category', 'ExpenseCategoryController@addCategory')->name('expense.category.add');

@@ -20,6 +20,17 @@
           <div class="col-12">
             
             <div class="card">
+
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
               
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -27,69 +38,24 @@
                   <tr>
                     <th>SL</th>
                     <th>Category Name</th>
-                    <th>Category Details</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
                   
-                  <tr>
-                    <td>1</td>
-                    <td>Category One</td>
-                    <td>Malayasia</td>
+                  @foreach($categories as $category)
+                  <tr>                    
+                    <td>{{ $category->id ?? '' }}</td>
+                    <td>{{ $category->category_name ?? '' }}</td>
                     <td>
-                    	 <div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
-		                      </div>
-		                    </button>
-		                 </div>
-                    </td>
-                  </tr>
-                  
-                  <tr>
-                    <td>2</td>
-                    <td>Category Two</td>
-                    <td>Malayasia</td>
-                    <td>
-                    <div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
-		                      </div>
-		                    </button>
-		                 </div>
+                    <a href="{{ route('edit.category',[ $category->uid, $category->slug]) }}" class="btn btn-info btn-xs">Edit</a>
+                    <a href="{{ route('delete.category', $category->uid) }}" class="btn btn-danger btn-xs">Delete</a>
+                       
                     </td>
                   </tr>
 
-                  <tr>
-                    <td>3</td>
-                    <td>Category Three</td>
-                    <td>Malayasia</td>
-                    <td>
-                    	<div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
-		                        
-		                      </div>
-		                    </button>
-		                 </div>
-                    </td>
-                  </tr>
+                  @endforeach
+                  
                   
                   </tfoot>
                 </table>

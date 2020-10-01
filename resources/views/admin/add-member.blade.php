@@ -37,7 +37,7 @@
 
                 <div class="form-group">
                   <label>Company<span class="required">*</span></label>
-                  <select name="company_name" id="company_name" class="form-control select2" style="width: 100%;">
+                  <select name="company_id" id="company_id" class="form-control select2" style="width: 100%;">
                     <option selected="selected">Selected Company Name</option>
                     <option>Microsoft</option>
                     <option>Apple</option>
@@ -214,7 +214,7 @@
               <label for="exampleInputFile">Photo</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" name="photo_file" id="photo_file" class="custom-file-input" id="exampleInputFile">
+                  <input type="file" name="member_image" id="member_image" class="custom-file-input" id="exampleInputFile">
                   <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
               </div>
@@ -312,7 +312,7 @@
                   <label> Subbmission Date:</label>
                   <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                         <div class="input-group date" id="reservationdate" data-target-input="nearest">                    
-                          <input type="text" name="subbmision_date" id="subbmision_date" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                          <input type="text" name="cidb_subbmision_date" id="cidb_subbmision_date" class="form-control datetimepicker-input" data-target="#reservationdate"/>
                         </div>
                     </div>
                 </div>
@@ -321,7 +321,7 @@
                   <label>Delivery Date:</label>
                   <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
                         <div class="input-group date" id="reservationdate2" data-target-input="nearest">                    
-                          <input type="text" name="delivery_date" id="delivery_date" class="form-control datetimepicker-input" data-target="#reservationdate2"/>
+                          <input type="text" name="cidb_delivery_date" id="cidb_delivery_date" class="form-control datetimepicker-input" data-target="#reservationdate2"/>
                         </div>
                     </div>
                 </div>
@@ -364,19 +364,19 @@
               </div>
               <div class="form-group">
                 <label>Discount</label>
-                <input type="number" name="discount" id="discount" class="form-control" placeholder="Enter discount">
+                <input type="number" name="diposit_discount" id="diposit_discount" class="form-control" placeholder="Enter discount">
               </div>
               <div class="form-group">
                 <label>Permanent Deposit</label>
-                <input type="number" name="permanent diposit" id="permanent diposit" class="form-control" placeholder="Enter permanent diposite">
+                <input type="number" name="permanent_diposit" id="permanent_diposit" class="form-control" placeholder="Enter permanent diposite">
               </div>
               <div class="form-group">
                 <label>Refund Amount</label>
-                <input type="number" name="refund_amount" id="refund_amount" class="form-control" placeholder="Enter refound amount">
+                <input type="number" name="deposit_refund_amount" id="deposit_refund_amount" class="form-control" placeholder="Enter refound amount">
               </div>
               <div class="form-group">
                 <label>Refund Date</label>
-                <input type="text" name="refund_date" id="refund_date" class="form-control">
+                <input type="text" name="deposit_refund_date" id="deposit_refund_date" class="form-control">
               </div>
 
 
@@ -412,7 +412,7 @@
                 </div>
                 <div class="col-md-5">                  
                   <div class="form-group">
-                    <input type="number" name="amount[]" id="amount[]" class="form-control" placeholder="Enter name">
+                    <input type="number" name="deposit_amount[]" id="deposit_amount[]" class="form-control" placeholder="Enter name">
                   </div>
                 </div>
 
@@ -451,7 +451,7 @@
                 </div>
                 <div class="col-md-5">                  
                   <div class="form-group">
-                  <select name="payment_category[]" id="payment_category[]" class="form-control select2" style="width: 100%;">
+                  <select name="payment_category_id[]" id="payment_category_id[]" class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select</option>
                     <option>SOCSO</option>                    
                     <option>MEDICAL FEE</option>
@@ -512,12 +512,12 @@
                 </div>
                 <div class="col-md-5">                  
                   <div class="form-group">
-                    <input type="text" name="installment_date" id="installment_date" class="form-control">
+                    <input type="text" name="installment_date[]" id="installment_date[]" class="form-control">
                   </div>
                 </div>
                 <div class="col-md-5">                  
                   <div class="form-group">
-                    <input type="number" name="received_amount" id="received_amount" class="form-control">
+                    <input type="number" name="received_amount[]" id="received_amount[]" class="form-control">
                   </div>
                 </div>
               </div>

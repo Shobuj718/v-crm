@@ -11,7 +11,7 @@
 @section('user-list', 'active')
 
 @section('page-header')
-	<h2>Company List</h2>
+	<h2>User List</h2>
 @endsection
 
 @section('content')
@@ -20,76 +20,45 @@
           <div class="col-12">
             
             <div class="card">
+
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
               
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>SL</th>
-                    <th>Company Name</th>
-                    <th>Company Address</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  
+                  @php
+                    $i = 1;
+                  @endphp
+                  @foreach($users as $user)
                   <tr>
-                    <td>1</td>
-                    <td>Comapny One</td>
-                    <td>Malayasia</td>
+                    <td>{{ $i++ }}</td>
+                    <td>{{ $user->username ?? '' }}</td>
+                    <td>{{ $user->email ?? '' }}</td>
+                    <td><a class="btn btn-warning btn-xs" href="javascript:void(0)">{{ $user->role ?? '' }} </a></td>
                     <td>
-                    	 <div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
-		                      </div>
-		                    </button>
-		                 </div>
+                      <a href="{{ route('edit.user', $user->uid) }}" class="btn btn-info btn-xs">Edit</a>
+                    <a href="{{ route('delete.user', $user->uid) }}" class="btn btn-danger btn-xs">Delete</a>
                     </td>
                   </tr>
-                  
-                  <tr>
-                    <td>2</td>
-                    <td>Comapny Two</td>
-                    <td>Malayasia</td>
-                    <td>
-                    <div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
-		                      </div>
-		                    </button>
-		                 </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>3</td>
-                    <td>Comapny Three</td>
-                    <td>Malayasia</td>
-                    <td>
-                    	<div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
-		                        
-		                      </div>
-		                    </button>
-		                 </div>
-                    </td>
-                  </tr>
+                  @endforeach
                   
                   </tfoot>
                 </table>

@@ -18,7 +18,7 @@
          <div class="col-md-8">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add User</h3>
+                <h3 class="card-title">Update User</h3>
               </div>
               
               <div class="alert alert-success" role="alert" style="display:none;margin-top: 10px">
@@ -28,43 +28,43 @@
                   <span class="error"></span>
               </div>
 
-              <form role="form" id="adduser">
+              <form role="form" id="updateUser">
                 <div class="card-body">
 
                     <div class="form-group">
                       <label>Role<span class="requird">*</span></label>
                       <select name="role" id="role" class="form-control select2" style="width: 100%;">
                         <option  value="" selected="selected">Select Role</option>
-                        <option value="superadmin">Super Admin</option>
-                        <option value="admin">Admin</option>
-                        <option value="staff">Staff</option>
-                        <option value="user">User</option>
+                        <option value="superadmin" {{ $user->role == 'superadmin' ? 'selected="selected"' : '' }} >Super Admin</option>
+                        <option value="admin" {{ $user->role == 'admin' ? 'selected="selected"' : '' }} >Admin</option>
+                        <option value="staff" {{ $user->role == 'staff' ? 'selected="selected"' : '' }} >Staff</option>
+                        <option value="user" {{ $user->role == 'user' ? 'selected="selected"' : '' }} >User</option>
                       </select>
                     </div>
 
                     <div class="form-group">
                       <label>Username<span class="requird">*</span></label>
-                      <input type="text" name="username" id="username" class="form-control" placeholder="Enter username">
+                      <input type="text" name="username" id="username" value="{{ $user->username ?? '' }}" class="form-control" placeholder="Enter username">
                     </div>
 
                     <div class="form-group">
                       <label>Email<span class="requird">*</span></label>
-                      <input type="text" name="email" id="email" class="form-control" placeholder="Enter Email">
+                      <input type="text" name="email" id="email" value="{{ $user->email ?? '' }}"  class="form-control" placeholder="Enter Email">
                     </div>
 
                     <div class="form-group">
                       <label>Password<span class="requird">*</span></label>
-                      <input type="text" name="password" id="password" class="form-control" placeholder="Enter Password">
+                      <input type="text" name="password" id="password" value="{{ $user->original_password ?? '' }}"  class="form-control" placeholder="Enter Password">
                     </div>
 
                   	<div class="form-group">
 	                    <label>Confirm Password<span class="requird">*</span></label>
-	                    <input type="text" name="password_confirm" id="password_confirm" class="form-control" placeholder="Confirm Password">
+	                    <input type="text" name="password_confirm" id="password_confirm" value="{{ $user->original_password ?? '' }}"  class="form-control" placeholder="Confirm Password">
                   	</div>
                   	
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Create</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                   <a type="submit" class="btn btn-warning" onclick="clearForm()">Clear</a>
                 </div>
               </form>
@@ -124,7 +124,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
   
-  $('#adduser').validate({
+  $('#updateUser').validate({
     rules: {
       username: {
         required: true,
@@ -180,14 +180,14 @@ $(document).ready(function () {
           //alert( "Form successful submitted!" );
           //return false;
 
-          var form = $('#adduser')[0];       
+          var form = $('#updateUser')[0];       
           var bodyFormData = new FormData(form); 
           console.log(bodyFormData);
           //return false;  
 
           axios({
               method: 'post',
-              url: "{{route('store.user')}}",
+              url: "{{route('update.user', $user->uid)}}",
               data: bodyFormData,
               headers: {'Content-Type': 'multipart/form-data' }
           })
@@ -197,7 +197,7 @@ $(document).ready(function () {
               if(response.data.status == 'success'){
                   $('.alert-success').css("display", "block");
                   $('.success').html(response.data.message).show();
-                  $("#adduser")[0].reset();
+                  $("#updateUser")[0].reset();
                   window.location.href = response.data.redirect_url;
               }else{
                 $('.alert-error').css("display", "block");
