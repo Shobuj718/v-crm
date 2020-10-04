@@ -49,7 +49,7 @@
                     <td>{{ $category->category_name ?? '' }}</td>
                     <td>
                     <a href="{{ route('edit.category',[ $category->uid, $category->slug]) }}" class="btn btn-info btn-xs">Edit</a>
-                    <a href="{{ route('delete.category', $category->uid) }}" class="btn btn-danger btn-xs">Delete</a>
+                    <a href="{{ route('deleted.category', $category->uid) }}" class="btn btn-danger btn-xs">Delete</a>
                        
                     </td>
                   </tr>

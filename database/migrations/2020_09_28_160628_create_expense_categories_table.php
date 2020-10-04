@@ -18,7 +18,7 @@ class CreateExpenseCategoriesTable extends Migration
             $table->string('uid')->unique();
             $table->integer('company_id')->nullable();
             $table->string('expense_category_name')->unique();
-            $table->text('expense_category_details')->nullable();
+            $table->text('expense_category_status')->nullable();
             $table->string('slug')->nullable();
             $table->enum('status', ['active','deactive'])->default('active');
             $table->timestamps();

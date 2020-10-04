@@ -19,7 +19,7 @@
          <div class="col-md-8">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Expense</h3>
+                <h3 class="card-title">Update Expense</h3>
               </div>
               
               <div class="alert alert-success" role="alert" style="display:none;margin-top: 10px">
@@ -29,20 +29,20 @@
                   <span class="error"></span>
               </div>
 
-              <form role="form" id="addExpense">
+              <form role="form" id="udpateExpense">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label>Expense Category Name<span class="requird">*</span></label>
-                      <input type="text" name="expense_category_name" id="expense_category_name" class="form-control" placeholder="Enter category name">
+                    <label>Expense Name<span class="requird">*</span></label>
+                      <input type="text" name="expense_category_name" id="expense_category_name" value="{{ $expense->expense_category_name }}" class="form-control" placeholder="Enter category name">
                   </div>
                   <div class="form-group">
-                        <label>Expense Category Status</label>
+                        <label>Expense Status</label>
                         <select name="expense_category_status" id="expense_category_status" class="form-control select2" style="width: 100%;">
                           <option value="" selected="selected">Select Status</option>
-                          <option value="active" >Active</option>
-                          <option value="pending" >Pending</option>
-                          <option value="deactive" >Deactive</option>
+                          <option value="active" {{ $expense->expense_category_status == 'active' ? 'selected="selected"' : '' }}>Active</option>
+                          <option value="pending" {{ $expense->expense_category_status == 'pending' ? 'selected="selected"' : '' }}>Pending</option>
+                          <option value="deactive" {{ $expense->expense_category_status == 'deactive' ? 'selected="selected"' : '' }}>Deactive</option>
                         </select>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
   
-  $('#addExpense').validate({
+  $('#udpateExpense').validate({
     rules: {
       expense_category_name: {
         required: true,
@@ -102,14 +102,14 @@ $(document).ready(function () {
           //alert( "Form successful submitted!" );
           //return false;
 
-          var form = $('#addExpense')[0];       
+          var form = $('#udpateExpense')[0];       
           var bodyFormData = new FormData(form); 
           console.log(bodyFormData);
           //return false;  
 
           axios({
               method: 'post',
-              url: "{{route('expense.category.store')}}",
+              url: "{{route('expense.category.update', $expense->uid)}}",
               data: bodyFormData,
               headers: {'Content-Type': 'multipart/form-data' }
           })
@@ -119,7 +119,7 @@ $(document).ready(function () {
               if(response.data.status == 'success'){
                   $('.alert-success').css("display", "block");
                   $('.success').html(response.data.message).show();
-                  $("#addExpense")[0].reset();
+                  $("#udpateExpense")[0].reset();
                   window.location.href = response.data.redirect_url;
               }else{
                 $('.alert-error').css("display", "block");
@@ -140,7 +140,7 @@ $(document).ready(function () {
 });
 
 function clearForm(){
-  $("#addExpense")[0].reset();
+  $("#udpateExpense")[0].reset();
 }
 
 </script>

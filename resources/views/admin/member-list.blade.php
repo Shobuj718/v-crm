@@ -11,7 +11,7 @@
 @section('member-list', 'active')
 
 @section('page-header')
-	<h2>Category List</h2>
+	<h2>Member List</h2>
 @endsection
 
 @section('content')
@@ -28,6 +28,14 @@
                     <th>SL</th>
                     <th>Passport No</th>
                     <th>Passport Name</th>
+                    <th>Passport Expired</th>
+                    <th>Visa Expired</th>
+                    <th>Phone</th>
+                    <th>Company</th>
+                    <th>Total</th>
+                    <th>Discount</th>
+                    <th>Paid</th>
+                    <th>Due</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -35,8 +43,132 @@
                   
                   <tr>
                     <td>1</td>
-                    <td>Pass One</td>
-                    <td>Shobuj</td>
+                    <td>ASDF2345</td>
+                    <td>Shobuj Mia</td>
+                    <td>02/Oct/2020</td>
+                    <td>02/Oct/2020</td>
+                    <td>01236489</td>
+                    <td>SM Manpower M.</td>
+                    <td>100.00</td>
+                    <td>0.00</td>
+                    <td>100.00</td>
+                    <td>0.00</td>
+                    <td>
+                       <div class="btn-group">
+                        <button type="button" class="btn btn-success">Action</button>
+                        <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
+                          <span class="sr-only">Toggle Dropdown</span>
+                          <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="#">Show</a>
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">SMS Passport</a>
+                            <a class="dropdown-item" href="#">SMS Visa</a>
+                            <a class="dropdown-item" href="#">SMS Visa Collect</a>
+                            <a class="dropdown-item" href="#">Remove</a>
+                          </div>
+                        </button>
+                     </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>ASDF2345</td>
+                    <td>Shobuj Mia</td>
+                    <td>02/Oct/2020</td>
+                    <td>02/Oct/2020</td>
+                    <td>01236489</td>
+                    <td>SM Manpower M.</td>
+                    <td>100.00</td>
+                    <td>0.00</td>
+                    <td>100.00</td>
+                    <td>0.00</td>
+                    <td>
+                       <div class="btn-group">
+                        <button type="button" class="btn btn-success">Action</button>
+                        <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
+                          <span class="sr-only">Toggle Dropdown</span>
+                          <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="#">Show</a>
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">SMS Passport</a>
+                            <a class="dropdown-item" href="#">SMS Visa</a>
+                            <a class="dropdown-item" href="#">SMS Visa Collect</a>
+                            <a class="dropdown-item" href="#">Remove</a>
+                          </div>
+                        </button>
+                     </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>ASDF2345</td>
+                    <td>Shobuj Mia</td>
+                    <td>02/Oct/2020</td>
+                    <td>02/Oct/2020</td>
+                    <td>01236489</td>
+                    <td>SM Manpower M.</td>
+                    <td>100.00</td>
+                    <td>0.00</td>
+                    <td>100.00</td>
+                    <td>0.00</td>
+                    <td>
+                       <div class="btn-group">
+                        <button type="button" class="btn btn-success">Action</button>
+                        <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
+                          <span class="sr-only">Toggle Dropdown</span>
+                          <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="#">Show</a>
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">SMS Passport</a>
+                            <a class="dropdown-item" href="#">SMS Visa</a>
+                            <a class="dropdown-item" href="#">SMS Visa Collect</a>
+                            <a class="dropdown-item" href="#">Remove</a>
+                          </div>
+                        </button>
+                     </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>ASDF2345</td>
+                    <td>Shobuj Mia</td>
+                    <td>02/Oct/2020</td>
+                    <td>02/Oct/2020</td>
+                    <td>01236489</td>
+                    <td>SM Manpower M.</td>
+                    <td>100.00</td>
+                    <td>0.00</td>
+                    <td>100.00</td>
+                    <td>0.00</td>
+                    <td>
+                       <div class="btn-group">
+                        <button type="button" class="btn btn-success">Action</button>
+                        <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
+                          <span class="sr-only">Toggle Dropdown</span>
+                          <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="#">Show</a>
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">SMS Passport</a>
+                            <a class="dropdown-item" href="#">SMS Visa</a>
+                            <a class="dropdown-item" href="#">SMS Visa Collect</a>
+                            <a class="dropdown-item" href="#">Remove</a>
+                          </div>
+                        </button>
+                     </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>ASDF2345</td>
+                    <td>Shobuj Mia</td>
+                    <td>02/Oct/2020</td>
+                    <td>02/Oct/2020</td>
+                    <td>01236489</td>
+                    <td>SM Manpower M.</td>
+                    <td>100.00</td>
+                    <td>0.00</td>
+                    <td>100.00</td>
+                    <td>0.00</td>
                     <td>
                     	 <div class="btn-group">
 		                    <button type="button" class="btn btn-success">Action</button>
@@ -54,46 +186,7 @@
 		                 </div>
                     </td>
                   </tr>
-                  
-                  <tr>
-                    <td>2</td>
-                    <td>Pass Two</td>
-                    <td>Wadud</td>
-                    <td>
-                    <div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
-		                      </div>
-		                    </button>
-		                 </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>3</td>
-                    <td>Passs Three</td>
-                    <td>Shamim</td>
-                    <td>
-                    	<div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-		                        <a class="dropdown-item" href="#">Edit</a>
-		                        <a class="dropdown-item" href="#">Delete</a>
-		                        
-		                      </div>
-		                    </button>
-		                 </div>
-                    </td>
-                  </tr>
-                  
+                                    
                   </tfoot>
                 </table>
               </div>

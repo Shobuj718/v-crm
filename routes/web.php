@@ -21,6 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/test-file', 'Admin\TestController@testFile');
+
 Route::group(['namespace' => 'Admin'], function(){
 
 	Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
@@ -36,7 +38,11 @@ Route::group(['namespace' => 'Admin'], function(){
 
 	//member all route
 	Route::get('/add-member', 'MemberController@addMember')->name('add.member');
+	Route::post('/add-member', 'MemberController@storeMember')->name('store.member');
 	Route::get('/member-list', 'MemberController@memberList')->name('member.list');
+	Route::get('/edit-member/{uid}/{slug}', 'MemberController@editMember')->name('edit.member');
+	Route::post('/update-member/{uid}', 'MemberController@updateMember')->name('update.member');
+	Route::get('/delete-member/{uid}', 'MemberController@deleteMember')->name('delete.member');
 
 	//user all route
 	Route::get('/add-user', 'UserController@addUser')->name('add.user');
@@ -52,11 +58,15 @@ Route::group(['namespace' => 'Admin'], function(){
 	Route::get('/category-list', 'CategoryController@categoryList')->name('category.list');
 	Route::get('/edit-category/{uid}/{slug}', 'CategoryController@editCategory')->name('edit.category');
 	Route::post('/update-category/{uid}', 'CategoryController@updateCategory')->name('update.category');
-	Route::get('/delete-category/{uid}', 'CategoryController@deleteCategory')->name('delete.category');
+	Route::get('/delete-category/{uid}', 'CategoryController@deleteCategory')->name('deleted.category');
 
 	//category all route
-	Route::get('/add-expense-category', 'ExpenseCategoryController@addCategory')->name('expense.category.add');
-	Route::get('/expense-category-list', 'ExpenseCategoryController@categoryList')->name('expense.category.list');
+	Route::get('/add-expense-category', 'ExpenseCategoryController@addExpenseCategory')->name('expense.category.add');
+	Route::post('/add-expense-category', 'ExpenseCategoryController@storeExpense')->name('expense.category.store');
+	Route::get('/expense-category-list', 'ExpenseCategoryController@expenseCategoryList')->name('expense.category.list');
+	Route::get('/edit-expense/{uid}/{slug}', 'ExpenseCategoryController@editExpense')->name('edit.expense');
+	Route::post('/update-expense/{uid}', 'ExpenseCategoryController@updateExpense')->name('expense.category.update');
+	Route::get('/delete-category/{uid}', 'ExpenseCategoryController@deleteExpense')->name('delete.expense');
 
 });
 

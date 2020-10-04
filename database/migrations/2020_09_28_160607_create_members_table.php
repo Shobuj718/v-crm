@@ -72,7 +72,7 @@ class CreateMembersTable extends Migration
             $table->string('deposit_amount')->nullable();
 
             //Payment info
-            $table->string('payment_category')->nullable();
+            $table->integer('payment_category_id')->nullable();
             $table->string('payment_amount')->nullable();
             $table->string('payment_total_amount')->nullable();
             $table->string('payment_discount')->nullable();

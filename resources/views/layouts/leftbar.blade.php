@@ -105,17 +105,17 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('expense.category.add') }}" class="nav-link @yield('expense-add')">
+                <a href="{{ route('expense.category.list') }}" class="nav-link @yield('expense-add')">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Expense </p>
+                  <p>Expense Category list </p>
                 </a>
               </li>
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('expense.category.list') }}" class="nav-link @yield('expense-list')">
+                <a href="{{ route('expense.category.add') }}" class="nav-link @yield('expense-list')">
                   <i class="far fa-circle nav-icon"></i>
-                  <p> Category </p>
+                  <p> Add Expense Category </p>
                 </a>
               </li>
             </ul>

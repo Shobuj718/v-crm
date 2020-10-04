@@ -20,7 +20,7 @@ class CreatePaymentInstallmentReceivedsTable extends Migration
             $table->string('company_id')->nullable();
             $table->string('member_id')->nullable();
             $table->timestamp('installment_date')->nullable();
-            $table->timestamp('received_amount')->nullable();
+            $table->integer('received_amount')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -23,7 +23,15 @@
     <div class="card-header">
     <h3 class="card-title">Add Member</h3>
     </div>
-    <form role="form">
+    
+              <div class="alert alert-success" role="alert" style="display:none;margin-top: 10px">
+                  <span class="success"></span>
+              </div>
+              <div class="alert alert-danger" role="alert" style="display:none;margin-top: 10px">
+                  <span class="error"></span>
+              </div>
+
+    <form role="form" id="addMember">
 
         <div class="row">
           <div class="col-md-6">
@@ -38,10 +46,10 @@
                 <div class="form-group">
                   <label>Company<span class="required">*</span></label>
                   <select name="company_id" id="company_id" class="form-control select2" style="width: 100%;">
-                    <option selected="selected">Selected Company Name</option>
-                    <option>Microsoft</option>
-                    <option>Apple</option>
-                    <option>California</option>
+                    <option value="" selected>Selected Company Name</option>
+                    @foreach($companies as $company)
+                    <option value="{{ $company->id ?? '' }}">{{ $company->company_name ?? '' }}</option>
+                    @endforeach
                   </select>
                 </div>
 
@@ -69,7 +77,7 @@
               <label for="exampleInputFile">Passport Copy</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" name="passport_copy" id="passport_copy" class="custom-file-input" id="exampleInputFile">
+                  <input type="file" name="passport_copy[]" id="passport_copy[]" class="custom-file-input" id="exampleInputFile">
                   <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
 
@@ -96,7 +104,7 @@
               <label for="exampleInputFile">Visa Copy</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" name="visa_copy" id="visa_copy" class="custom-file-input" id="exampleInputFile">
+                  <input type="file" name="visa_copy[]" id="visa_copy[]" class="custom-file-input" id="exampleInputFile">
                   <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
 
@@ -144,7 +152,7 @@
               <label for="exampleInputFile">Levi</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input name="levi_file" id="levi_file" type="file" class="custom-file-input" id="exampleInputFile">
+                  <input name="levi_file[]" id="levi_file[]" type="file" class="custom-file-input" id="exampleInputFile">
                   <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
 
@@ -157,7 +165,7 @@
               <label for="exampleInputFile">I-Card</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input name="icard_file" id="icard_file" type="file" class="custom-file-input" id="exampleInputFile">
+                  <input name="icard_file[]" id="icard_file[]" type="file" class="custom-file-input" id="exampleInputFile">
                   <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
 
@@ -170,7 +178,7 @@
               <label for="exampleInputFile">Others</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input name="other_file" id="other_file" type="file" class="custom-file-input" id="exampleInputFile">
+                  <input name="other_file[]" id="other_file[]" type="file" class="custom-file-input" id="exampleInputFile">
                   <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
 
@@ -342,7 +350,7 @@
               <label for="exampleInputFile">CIDB Copy</label>
               <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" name="cidb_file" id="cidb_file" class="custom-file-input" >
+                  <input type="file" name="cidb_file[]" id="cidb_file[]" class="custom-file-input" >
                   <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
 
@@ -453,12 +461,12 @@
                   <div class="form-group">
                   <select name="payment_category_id[]" id="payment_category_id[]" class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select</option>
-                    <option>SOCSO</option>                    
-                    <option>MEDICAL FEE</option>
-                    <option>VISA FEE</option>
-                     <option>LETTER</option>
-                     <option>MEDICAL 2</option>
-                    <option>CIDB FEE</option>
+                    <option value="1">SOCSO</option>                    
+                    <option value="2">MEDICAL FEE</option>
+                    <option value="3">VISA FEE</option>
+                     <option value="4">LETTER</option>
+                     <option value="5">MEDICAL 2</option>
+                    <option value="6">CIDB FEE</option>
                    
                   </select>
                 </div>
@@ -527,9 +535,8 @@
 
         </div>
         <div class="card-footer" style="text-align:;">
-            <button type="submit" class="btn btn-primary">Create</button>
-        
-            <button type="submit" class="btn btn-warning">Clear</button>
+            <button type="submit" class="btn btn-success">Submit</button>
+                  <a type="submit" class="btn btn-warning" onclick="clearForm()">Clear</a>
         </div>
     </form>
 
@@ -540,6 +547,99 @@
 
 @section('scripts')
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  
+  $('#addMember').validate({
+    rules: {
+      passport_no: {required: true},
+      passport_surname: {required: true},
+      passport_givename: {required: true},
+      passport_expire: {required: true},
+      visa_expire_date: {required: true},
+      birth_date: {required: true},
+      phone: {required: true},
+      letter_bank: {required: true},
+      current_status: {required: true},
+      company_id: {
+          required: {
+              depends: function(element) {
+                  return $("#company_id").val() == '';
+              }
+          }
+      }
+    },
+    messages: {
+      passport_no: { required: "required" },
+      passport_surname: { required: "required" },
+      passport_givename: { required: "required" },
+      passport_expire: { required: "required" },
+      visa_expire_date: { required: "required" },
+      birth_date: { required: "required" },
+      phone: { required: "required" },
+      letter_bank: { required: "required" },
+      current_status: { required: "required" },
+      
+      company_id: { required: "required" },
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    },
+    submitHandler: function () {
+      
+          //alert( "Form successful submitted!" );
+          //return false;
+
+          var form = $('#addMember')[0];       
+          var bodyFormData = new FormData(form); 
+          console.log(bodyFormData);
+          //return false;  
+
+          axios({
+              method: 'post',
+              url: "{{route('store.member')}}",
+              data: bodyFormData,
+              headers: {'Content-Type': 'multipart/form-data' }
+          })
+          .then(function (response) {
+              console.log(response);
+              //return false;
+              if(response.data.status == 'success'){
+                  $('.alert-success').css("display", "block");
+                  $('.success').html(response.data.message).show();
+                  //$("#addMember")[0].reset();
+                  //window.location.href = response.data.redirect_url;
+              }else{
+                $('.alert-error').css("display", "block");
+                $('.error').html(response.data.message).show().delay(5000).fadeOut();
+              }
+              
+          })
+          .catch(function (response) {
+              console.log(response);
+          });
+
+    }
+
+  });
 
 
+
+});
+
+function clearForm(){
+  $("#addExpense")[0].reset();
+}
+
+</script>
 @endsection

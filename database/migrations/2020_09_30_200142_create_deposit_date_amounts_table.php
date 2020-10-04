@@ -19,7 +19,7 @@ class CreateDepositDateAmountsTable extends Migration
             $table->string('user_id')->nullable();
             $table->string('company_id')->nullable();
             $table->string('member_id')->nullable();
-            $table->string('deposit_amount')->nullable();
+            $table->integer('deposit_amount')->nullable();
             $table->timestamp('diposit_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
