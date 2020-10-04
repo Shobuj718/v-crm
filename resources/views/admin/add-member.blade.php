@@ -11,8 +11,9 @@
     }
   </style>
 
-
-  
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 @endsection
 
@@ -73,7 +74,7 @@
                 <input type="text" name="group_name" id="group_name" class="form-control" placeholder="Enter group name">
               </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="exampleInputFile">Passport Copy</label>
               <div class="input-group">
                 <div class="custom-file">
@@ -85,7 +86,23 @@
                 </button>
 
               </div>
-            </div>
+            </div> -->
+
+
+            <div class="input-group control-group increment" >
+                <input type="file" name="passport_copy[]" class="form-control">
+                <div class="input-group-btn"> 
+                  <button class="btn btn-info" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                </div>
+              </div>
+              <div class="clone hide">
+                <div class="control-group input-group" style="margin-top:10px">
+                  <input type="file" name="passport_copy[]" class="form-control">
+                  <div class="input-group-btn"> 
+                    <button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> </button>
+                  </div>
+                </div>
+              </div>
 
 
 
@@ -547,11 +564,21 @@
 
 @section('scripts')
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
 
 <script type="text/javascript">
 $(document).ready(function () {
   
+  $(".btn-info").click(function(){ 
+          var html = $(".clone").html();
+          $(".increment").after(html);
+      });
+
+      $("body").on("click",".btn-danger",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+
   $('#addMember').validate({
     rules: {
       passport_no: {required: true},
@@ -597,7 +624,7 @@ $(document).ready(function () {
     },
     submitHandler: function () {
       
-          //alert( "Form successful submitted!" );
+          alert( "Form successful submitted!" );
           //return false;
 
           var form = $('#addMember')[0];       

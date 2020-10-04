@@ -28,7 +28,8 @@ class MemberController extends Controller
 
     public function storeMember(Request $request){
     	
-    	//return response()->json($request->all());
+         
+        //return response()->json($request->all());          	
 
     	//try {
     		$user = Auth::user();
@@ -153,25 +154,25 @@ class MemberController extends Controller
     		$member->save();
 
     		// passport copy
-    		// add multiple passport copy
-    		$passport = new Passport;
-    		if($request->hasfile('passport_copy'))
+    		// add multiple passport copy    		
+    		
+	         if($request->hasfile('passport_copy'))
 	         {
 	            foreach($request->file('passport_copy') as $file)
 	            {
-	            	
-	                $name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
+	            	$name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
 	                $file->move(public_path().'/images/passport/', $name);
 
+	            	$passport = new Passport;
 	                $passport->uid 				= uniqid(time());
 	                $passport->company_id 		= $request->company_id;
 	                $passport->user_id 			= $user->id;
 	                $passport->member_id 		= $member->id;
 	                $passport->passport_image 	= $name;
 	                $passport->save();
-
 	            }
 	         }
+
 
     		return response()->json([
                 'status'    => 'success',
