@@ -16,6 +16,7 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('uid')->unique();
+            $table->integer('user_id')->nullable();
             $table->integer('company_id')->nullable();
             //need other table ...
             // passport copy, visa copy, levi, i-card, others, document,  cidb copy, 

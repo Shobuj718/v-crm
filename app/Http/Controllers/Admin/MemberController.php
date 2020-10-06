@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use Auth;
+use App\Models\Visa;
+use App\Models\Cidb;
+use App\Models\Document;
+use App\Models\Levi;
+use App\Models\Other;
+
 use App\Models\Member;
 use App\Models\Company;
 use App\Models\Passport;
+use App\Models\ExpenseCategory;
 use App\Models\DepositDateAmount;
 use App\Models\PaymentCategoryAmount;
 use App\Models\PaymentInstallmentReceived;
@@ -18,8 +25,9 @@ use App\Models\PaymentInstallmentReceived;
 class MemberController extends Controller
 {
     public function addMember(){
-    	$companies = Company::where('status', 'active')->get();
-    	return view('admin.add-member', compact('companies'));
+        $companies = Company::where('status', 'active')->get();
+    	$expense_categories = ExpenseCategory::all();
+    	return view('admin.add-member', compact('companies', 'expense_categories'));
     }
     public function memberList(){
     	$companies = Company::where('status', 'active')->get();
@@ -32,10 +40,12 @@ class MemberController extends Controller
         //return response()->json($request->all());          	
 
     	//try {
-    		$user = Auth::user();
+    		
+            $user = Auth::user();
     		//return response()->json($user);
     		$member = new Member;
     		$member->uid 					= uniqid(time());
+            $member->user_id                = $user->id;
     		$member->company_id 			= $request->company_id;
 
     		//passport info
@@ -44,11 +54,15 @@ class MemberController extends Controller
     		$member->passport_givename 		= $request->passport_givename;
     		$member->group_name 			= $request->group_name;
 
+            
+
     		$member->passport_expire 		= $request->passport_expire;
     		$member->passport_sub_date 		= $request->passport_sub_date;
 
     		//visa copy
     		// add visa multiple copy
+
+            
 
     		$member->visa_expire_date 		= $request->visa_expire_date;
     		$member->visa_status 			= $request->visa_status;
@@ -88,8 +102,8 @@ class MemberController extends Controller
     		$member->passport_status 		= $request->passport_status;
 
     		//cidb info
-    		$member->cidb_subbmision_date 	= $request->cidb_subbmision_date;
-    		$member->cidb_delivery_date 	= $request->cidb_delivery_date;
+    		$member->cidb_subbmision_date 	= $user->dateFormat($request->cidb_subbmision_date);
+    		$member->cidb_delivery_date 	= $user->dateFormat($request->cidb_delivery_date);
     		$member->cidb_status 			= $request->cidb_status;
 
     		//CIDB Copy
@@ -106,29 +120,7 @@ class MemberController extends Controller
     		//$member->diposit_date 			= $request->diposit_date;
     		//$member->deposit_amount 		= $request->deposit_amount;
 
-    		for ($i=0; $i < count($request->diposit_date); $i++) {
-            	
-            	$deposit_date_amount		= new DepositDateAmount;
-            	$deposit_date_amount->uid 	= uniqid(time());
-                $deposit_date_amount->diposit_date 		= $request->diposit_date[$i];
-                $deposit_date_amount->deposit_amount 	= $request->deposit_amount[$i];
-                $deposit_date_amount->save();
-
-            }
-
-
-    		 //Payment info
-    		// multiple value added...
     		
-            for ($i=0; $i < count($request->payment_category_id); $i++) {
-            	
-            	$payment_category_amount 		= new PaymentCategoryAmount;
-            	$payment_category_amount->uid 	= uniqid(time());
-                $payment_category_amount->payment_category_id 		= $request->payment_category_id[$i];
-                $payment_category_amount->payment_amount 		= $request->payment_amount[$i];
-                $payment_category_amount->save();
-
-            }
 
 
 
@@ -139,39 +131,212 @@ class MemberController extends Controller
     		// multiple value added...
     		//$member->installment_date 		= $request->installment_date;
     		//$member->received_amount 		= $request->received_amount;
+ 		
+    		$member->save();
 
-    		for ($i=0; $i < count($request->installment_date); $i++) {
-            	
-            	$payment_installment_received		= new PaymentInstallmentReceived;
-            	$payment_installment_received->uid 	= uniqid(time());
-                $payment_installment_received->installment_date 		= $request->installment_date[$i];
-                $payment_installment_received->received_amount 		= $request->received_amount[$i];
+
+            for ($i=0; $i < count($request->installment_date); $i++) {
+                
+                $payment_installment_received       = new PaymentInstallmentReceived;
+                $payment_installment_received->uid  = uniqid(time());
+                $payment_installment_received->installment_date         = $request->installment_date[$i];
+                $payment_installment_received->received_amount      = $request->received_amount[$i];
+                $payment_installment_received->company_id       = $request->company_id;
+                $payment_installment_received->user_id          = $user->id;
+                $payment_installment_received->member_id        = $member->id;
                 $payment_installment_received->save();
 
             }
 
+            for ($i=0; $i < count($request->diposit_date); $i++) {
+                
+                $deposit_date_amount        = new DepositDateAmount;
+                $deposit_date_amount->uid   = uniqid(time());
+                $deposit_date_amount->diposit_date      = $request->diposit_date[$i];
+                $deposit_date_amount->deposit_amount    = $request->deposit_amount[$i];
+                $deposit_date_amount->company_id       = $request->company_id;
+                $deposit_date_amount->user_id          = $user->id;
+                $deposit_date_amount->member_id        = $member->id;
+                $deposit_date_amount->save();
 
-    		$member->save();
+            }
 
-    		// passport copy
-    		// add multiple passport copy    		
+
+             //Payment info
+            // multiple value added...
+            
+            for ($i=0; $i < count($request->payment_category_id); $i++) {
+                
+                $payment_category_amount        = new PaymentCategoryAmount;
+                $payment_category_amount->uid   = uniqid(time());
+                $payment_category_amount->payment_category_id       = $request->payment_category_id[$i];
+                $payment_category_amount->payment_amount        = $request->payment_amount[$i];
+                $payment_category_amount->company_id       = $request->company_id;
+                $payment_category_amount->user_id          = $user->id;
+                $payment_category_amount->member_id        = $member->id;
+                $payment_category_amount->save();
+
+            }
     		
-	         if($request->hasfile('passport_copy'))
-	         {
-	            foreach($request->file('passport_copy') as $file)
-	            {
-	            	$name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
-	                $file->move(public_path().'/images/passport/', $name);
+            if($request->hasfile('passport_copy'))
+             {
+                foreach($request->file('passport_copy') as $file)
+                {
+                    $name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
+                    $file->move(public_path().'/images/passport/', $name);
 
-	            	$passport = new Passport;
-	                $passport->uid 				= uniqid(time());
-	                $passport->company_id 		= $request->company_id;
-	                $passport->user_id 			= $user->id;
-	                $passport->member_id 		= $member->id;
-	                $passport->passport_image 	= $name;
-	                $passport->save();
-	            }
-	         }
+                    $passport = new Passport;
+                    $passport->uid              = uniqid(time());
+                    $passport->company_id       = $request->company_id;
+                    $passport->user_id          = $user->id;
+                    $passport->member_id        = $member->id;
+                    $passport->passport_image   = $name;
+                    $passport->save();
+                }
+             }
+
+            if($request->hasfile('visa_copy'))
+             {
+                foreach($request->file('visa_copy') as $file)
+                {
+                    $name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
+                    $file->move(public_path().'/images/visa_copy/', $name);
+
+                    $passport = new Visa;
+                    $passport->uid              = uniqid(time());
+                    $passport->company_id       = $request->company_id;
+                    $passport->user_id          = $user->id;
+                    $passport->member_id        = $member->id;
+                    $passport->visa_image      = $name;
+                    $passport->save();
+                }
+             }
+
+            if($request->hasfile('levi_file'))
+             {
+                foreach($request->file('levi_file') as $file)
+                {
+                    $visa_name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
+                    $file->move(public_path().'/images/levi_file/', $visa_name);
+
+                    $passport = new Levi;
+                    $passport->uid              = uniqid(time());
+                    $passport->company_id       = $request->company_id;
+                    $passport->user_id          = $user->id;
+                    $passport->member_id        = $member->id;
+                    $passport->levi_image       = $visa_name;
+                    $passport->save();
+                }
+             }
+	         
+             //i-card
+            /*if($request->hasfile('icard_file'))
+             {
+                foreach($request->file('icard_file') as $file)
+                {
+                    $name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
+                    $file->move(public_path().'/images/icard_file/', $name);
+
+                    $icard = new Icard;
+                    $icard->uid              = uniqid(time());
+                    $icard->company_id       = $request->company_id;
+                    $icard->user_id          = $user->id;
+                    $icard->member_id        = $member->id;
+                    $icard->icard_image      = $name;
+                    $icard->save();
+                }
+             }*/
+
+
+            if($request->hasfile('other_file'))
+            {
+                foreach($request->file('other_file') as $file)
+                {
+                    $name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
+                    $file->move(public_path().'/images/other_file/', $name);
+
+                    $passport = new Other;
+                    $passport->uid              = uniqid(time());
+                    $passport->company_id       = $request->company_id;
+                    $passport->user_id          = $user->id;
+                    $passport->member_id        = $member->id;
+                    $passport->other_image      = $name;
+                    $passport->save();
+                }
+             }
+
+             /*if($request->hasfile('member_image'))
+             {
+                    $name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
+                    $file->move(public_path().'/images/member_image/', $name);
+
+                    $member->member_image   = $name;
+                    $member->save();
+                
+             }*/
+
+             if($request->hasFile('member_image')){
+                $image              = $request->file('member_image');
+                $image_origin_name  = $image->getClientOriginalName();
+                $file_name          = pathinfo($image_origin_name, PATHINFO_FILENAME); // file
+                $new_name           = $file_name.rand() . '.' . $image->getClientOriginalExtension();
+                
+                $image->move(public_path('images/member_image/'), $new_name);
+    
+                $member->member_image   = $name;
+                $member->save();
+            }
+
+            if($request->hasfile('document'))
+             {
+                foreach($request->file('document') as $file)
+                {
+                    $name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
+                    $file->move(public_path().'/images/document/', $name);
+
+                    $passport = new Document;
+                    $passport->uid              = uniqid(time());
+                    $passport->company_id       = $request->company_id;
+                    $passport->user_id          = $user->id;
+                    $passport->member_id        = $member->id;
+                    $passport->document_image      = $name;
+                    $passport->save();
+                }
+             }
+
+            if($request->hasfile('document'))
+             {
+                foreach($request->file('cidb_file') as $file)
+                {
+                    $name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
+                    $file->move(public_path().'/images/cidb_file/', $name);
+
+                    $passport = new Cidb;
+                    $passport->uid              = uniqid(time());
+                    $passport->company_id       = $request->company_id;
+                    $passport->user_id          = $user->id;
+                    $passport->member_id        = $member->id;
+                    $passport->cidb_image      = $name;
+                    $passport->save();
+                }
+             }
+
+            /*if($request->hasfile('cidb_file'))
+             {
+                foreach($request->file('cidb_file') as $file)
+                {
+                    $name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
+                    $file->move(public_path().'/images/cidb_file/', $name);
+
+                    $cidb = new Cidb;
+                    $cidb->uid              = uniqid(time());
+                    $cidb->company_id       = $request->company_id;
+                    $cidb->user_id          = $user->id;
+                    $cidb->member_id        = $member->id;
+                    $cidb->cidb_image      = $name;
+                    $cidb->save();
+                }
+             }*/
 
 
     		return response()->json([
