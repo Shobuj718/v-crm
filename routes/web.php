@@ -43,6 +43,7 @@ Route::group(['namespace' => 'Admin'], function(){
 	Route::get('/edit-member/{uid}/{slug}', 'MemberController@editMember')->name('edit.member');
 	Route::post('/update-member/{uid}', 'MemberController@updateMember')->name('update.member');
 	Route::get('/delete-member/{uid}', 'MemberController@deleteMember')->name('delete.member');
+	Route::get('/single-member-details/{uid}', 'MemberController@singleMemberDetails')->name('single.member.details');
 
 	//user all route
 	Route::get('/add-user', 'UserController@addUser')->name('add.user');
@@ -67,6 +68,16 @@ Route::group(['namespace' => 'Admin'], function(){
 	Route::get('/edit-expense/{uid}/{slug}', 'ExpenseCategoryController@editExpense')->name('edit.expense');
 	Route::post('/update-expense/{uid}', 'ExpenseCategoryController@updateExpense')->name('expense.category.update');
 	Route::get('/delete-category/{uid}', 'ExpenseCategoryController@deleteExpense')->name('delete.expense');
+
+
+	//all report route
+	Route::get('/income-report', 'ReportController@incomeReport')->name('income.report');
+	Route::get('/expense-report', 'ReportController@expenseReport')->name('expense.report');
+	Route::get('/income-expense-report', 'ReportController@incomeExpenseReport')->name('income.expense.report');
+	Route::get('/due-installment', 'ReportController@dueInstallment')->name('due.installment');
+	Route::get('/passport-expired', 'ReportController@passportExpired')->name('passport.expired');
+	Route::get('/visa-expired', 'ReportController@visaExpired')->name('visa.expired');
+	Route::get('/cidb-report', 'ReportController@cidbReport')->name('cidb.report');
 
 });
 

@@ -12,6 +12,7 @@ use App\Models\Visa;
 use App\Models\Cidb;
 use App\Models\Document;
 use App\Models\Levi;
+use App\Models\Icard;
 use App\Models\Other;
 
 use App\Models\Member;
@@ -30,8 +31,11 @@ class MemberController extends Controller
     	return view('admin.add-member', compact('companies', 'expense_categories'));
     }
     public function memberList(){
-    	$companies = Company::where('status', 'active')->get();
-    	return view('admin.member-list', compact('companies'));
+
+        $members = Member::all();
+        $companies = Company::where('status', 'active')->get();
+    	
+    	return view('admin.member-list', compact('members', 'companies'));
     }
 
     public function storeMember(Request $request){
@@ -102,8 +106,8 @@ class MemberController extends Controller
     		$member->passport_status 		= $request->passport_status;
 
     		//cidb info
-    		$member->cidb_subbmision_date 	= $user->dateFormat($request->cidb_subbmision_date);
-    		$member->cidb_delivery_date 	= $user->dateFormat($request->cidb_delivery_date);
+    		$member->cidb_subbmision_date 	= $request->cidb_subbmision_date;
+    		$member->cidb_delivery_date 	= $request->cidb_delivery_date;
     		$member->cidb_status 			= $request->cidb_status;
 
     		//CIDB Copy
@@ -124,9 +128,9 @@ class MemberController extends Controller
 
 
 
-    		$member->payment_total_amount 	= $request->payment_total_amount;
-    		$member->payment_discount 		= $request->payment_discount;
-    		$member->payment_payable 		= $request->payment_payable;
+    		//$member->payment_total_amount 	= $request->payment_total_amount;
+    		//$member->payment_discount 		= $request->payment_discount;
+    		//$member->payment_payable 		= $request->payment_payable;
 
     		// multiple value added...
     		//$member->installment_date 		= $request->installment_date;
@@ -134,9 +138,12 @@ class MemberController extends Controller
  		
     		$member->save();
 
+            $received_amount = 0;
 
             for ($i=0; $i < count($request->installment_date); $i++) {
                 
+                $received_amount += $request->received_amount[$i];
+
                 $payment_installment_received       = new PaymentInstallmentReceived;
                 $payment_installment_received->uid  = uniqid(time());
                 $payment_installment_received->installment_date         = $request->installment_date[$i];
@@ -147,6 +154,10 @@ class MemberController extends Controller
                 $payment_installment_received->save();
 
             }
+
+            //$member->installment_date       = $request->installment_date;
+            $member->received_amount = $received_amount;
+            $member->save();
 
             for ($i=0; $i < count($request->diposit_date); $i++) {
                 
@@ -165,8 +176,12 @@ class MemberController extends Controller
              //Payment info
             // multiple value added...
             
+            $payment_total_amount = 0;
+
             for ($i=0; $i < count($request->payment_category_id); $i++) {
                 
+                $payment_total_amount += $request->payment_amount[$i];
+
                 $payment_category_amount        = new PaymentCategoryAmount;
                 $payment_category_amount->uid   = uniqid(time());
                 $payment_category_amount->payment_category_id       = $request->payment_category_id[$i];
@@ -177,6 +192,11 @@ class MemberController extends Controller
                 $payment_category_amount->save();
 
             }
+
+            $member->payment_total_amount     = $payment_total_amount;
+            $member->payment_discount       = $request->payment_discount;
+            $member->payment_payable      = $payment_total_amount - $request->payment_discount;
+            $member->save();
     		
             if($request->hasfile('passport_copy'))
              {
@@ -230,7 +250,7 @@ class MemberController extends Controller
              }
 	         
              //i-card
-            /*if($request->hasfile('icard_file'))
+            if($request->hasfile('icard_file'))
              {
                 foreach($request->file('icard_file') as $file)
                 {
@@ -245,7 +265,7 @@ class MemberController extends Controller
                     $icard->icard_image      = $name;
                     $icard->save();
                 }
-             }*/
+             }
 
 
             if($request->hasfile('other_file'))
@@ -264,16 +284,6 @@ class MemberController extends Controller
                     $passport->save();
                 }
              }
-
-             /*if($request->hasfile('member_image'))
-             {
-                    $name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
-                    $file->move(public_path().'/images/member_image/', $name);
-
-                    $member->member_image   = $name;
-                    $member->save();
-                
-             }*/
 
              if($request->hasFile('member_image')){
                 $image              = $request->file('member_image');
@@ -304,7 +314,7 @@ class MemberController extends Controller
                 }
              }
 
-            if($request->hasfile('document'))
+            if($request->hasfile('cidb_file'))
              {
                 foreach($request->file('cidb_file') as $file)
                 {
@@ -321,24 +331,7 @@ class MemberController extends Controller
                 }
              }
 
-            /*if($request->hasfile('cidb_file'))
-             {
-                foreach($request->file('cidb_file') as $file)
-                {
-                    $name = $request->company_id.'-'.$member->id.'-'.time().'.'.$file->extension();
-                    $file->move(public_path().'/images/cidb_file/', $name);
-
-                    $cidb = new Cidb;
-                    $cidb->uid              = uniqid(time());
-                    $cidb->company_id       = $request->company_id;
-                    $cidb->user_id          = $user->id;
-                    $cidb->member_id        = $member->id;
-                    $cidb->cidb_image      = $name;
-                    $cidb->save();
-                }
-             }*/
-
-
+            
     		return response()->json([
                 'status'    => 'success',
                 'message'   => 'Member created successfully done.',
@@ -366,7 +359,7 @@ class MemberController extends Controller
     }
 
     public function updatemember($uid, Request $request){
-
+        return response()->json($request->all());
     	try {
     		$member = member::where('status', 'active')->where('uid', $uid)->first();
     		$member->member_name 		= $request->member_name;
@@ -410,6 +403,12 @@ class MemberController extends Controller
                 
             ]);
     	}
+    }
+
+    public function singleMemberDetails($member_uid){
+        $member = Member::where('uid', $member_uid)->first();
+        //dd($member);
+        return view('admin.single-member-details', compact('member'));
     }
 
 }

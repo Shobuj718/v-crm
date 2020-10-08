@@ -22,6 +22,18 @@
             <div class="card">
               
               <div class="card-body">
+
+              <div class="col-md-6" style="text-align:right;">
+                <div class="form-group">
+                  <select name="company_id" id="company_id" class="form-control select2" style="width: 100%;">
+                    <option value="" selected>Selected Company Name</option>
+                    @foreach($companies as $company)
+                    <option value="{{ $company->id ?? '' }}">{{ $company->company_name ?? '' }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -40,153 +52,37 @@
                   </tr>
                   </thead>
                   <tbody>
-                  
-                  <tr>
-                    <td>1</td>
-                    <td>ASDF2345</td>
-                    <td>Shobuj Mia</td>
-                    <td>02/Oct/2020</td>
-                    <td>02/Oct/2020</td>
-                    <td>01236489</td>
-                    <td>SM Manpower M.</td>
-                    <td>100.00</td>
-                    <td>0.00</td>
-                    <td>100.00</td>
-                    <td>0.00</td>
-                    <td>
-                       <div class="btn-group">
-                        <button type="button" class="btn btn-success">Action</button>
-                        <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-                          <span class="sr-only">Toggle Dropdown</span>
-                          <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="#">Show</a>
-                            <a class="dropdown-item" href="#">Edit</a>
-                            <a class="dropdown-item" href="#">SMS Passport</a>
-                            <a class="dropdown-item" href="#">SMS Visa</a>
-                            <a class="dropdown-item" href="#">SMS Visa Collect</a>
-                            <a class="dropdown-item" href="#">Remove</a>
-                          </div>
-                        </button>
-                     </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>ASDF2345</td>
-                    <td>Shobuj Mia</td>
-                    <td>02/Oct/2020</td>
-                    <td>02/Oct/2020</td>
-                    <td>01236489</td>
-                    <td>SM Manpower M.</td>
-                    <td>100.00</td>
-                    <td>0.00</td>
-                    <td>100.00</td>
-                    <td>0.00</td>
-                    <td>
-                       <div class="btn-group">
-                        <button type="button" class="btn btn-success">Action</button>
-                        <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-                          <span class="sr-only">Toggle Dropdown</span>
-                          <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="#">Show</a>
-                            <a class="dropdown-item" href="#">Edit</a>
-                            <a class="dropdown-item" href="#">SMS Passport</a>
-                            <a class="dropdown-item" href="#">SMS Visa</a>
-                            <a class="dropdown-item" href="#">SMS Visa Collect</a>
-                            <a class="dropdown-item" href="#">Remove</a>
-                          </div>
-                        </button>
-                     </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>ASDF2345</td>
-                    <td>Shobuj Mia</td>
-                    <td>02/Oct/2020</td>
-                    <td>02/Oct/2020</td>
-                    <td>01236489</td>
-                    <td>SM Manpower M.</td>
-                    <td>100.00</td>
-                    <td>0.00</td>
-                    <td>100.00</td>
-                    <td>0.00</td>
-                    <td>
-                       <div class="btn-group">
-                        <button type="button" class="btn btn-success">Action</button>
-                        <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-                          <span class="sr-only">Toggle Dropdown</span>
-                          <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="#">Show</a>
-                            <a class="dropdown-item" href="#">Edit</a>
-                            <a class="dropdown-item" href="#">SMS Passport</a>
-                            <a class="dropdown-item" href="#">SMS Visa</a>
-                            <a class="dropdown-item" href="#">SMS Visa Collect</a>
-                            <a class="dropdown-item" href="#">Remove</a>
-                          </div>
-                        </button>
-                     </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>ASDF2345</td>
-                    <td>Shobuj Mia</td>
-                    <td>02/Oct/2020</td>
-                    <td>02/Oct/2020</td>
-                    <td>01236489</td>
-                    <td>SM Manpower M.</td>
-                    <td>100.00</td>
-                    <td>0.00</td>
-                    <td>100.00</td>
-                    <td>0.00</td>
-                    <td>
-                       <div class="btn-group">
-                        <button type="button" class="btn btn-success">Action</button>
-                        <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-                          <span class="sr-only">Toggle Dropdown</span>
-                          <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="#">Show</a>
-                            <a class="dropdown-item" href="#">Edit</a>
-                            <a class="dropdown-item" href="#">SMS Passport</a>
-                            <a class="dropdown-item" href="#">SMS Visa</a>
-                            <a class="dropdown-item" href="#">SMS Visa Collect</a>
-                            <a class="dropdown-item" href="#">Remove</a>
-                          </div>
-                        </button>
-                     </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>ASDF2345</td>
-                    <td>Shobuj Mia</td>
-                    <td>02/Oct/2020</td>
-                    <td>02/Oct/2020</td>
-                    <td>01236489</td>
-                    <td>SM Manpower M.</td>
-                    <td>100.00</td>
-                    <td>0.00</td>
-                    <td>100.00</td>
-                    <td>0.00</td>
-                    <td>
-                    	 <div class="btn-group">
-		                    <button type="button" class="btn btn-success">Action</button>
-		                    <button type="button" class="btn btn-success dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-		                      <span class="sr-only">Toggle Dropdown</span>
-		                      <div class="dropdown-menu" role="menu">
-		                        <a class="dropdown-item" href="#">Show</a>
-                            <a class="dropdown-item" href="#">Edit</a>
-                            <a class="dropdown-item" href="#">SMS Passport</a>
-                            <a class="dropdown-item" href="#">SMS Visa</a>
-		                        <a class="dropdown-item" href="#">SMS Visa Collect</a>
-		                        <a class="dropdown-item" href="#">Remove</a>
-		                      </div>
-		                    </button>
-		                 </div>
-                    </td>
-                  </tr>
-                                    
+                  @php
+                    $i = 1;
+                  @endphp
+                  @foreach($members as $key => $member)
+                    <tr>
+                      <td>{{ $i++ }}</td>
+                      <td>{{ $member->passport_no ?? '' }}</td>
+                      <td>{{ $member->passport_surname ?? '' }}</td>
+                      <td>{{\Carbon\Carbon::parse($member->passport_expire)->format('d/M/Y')}}</td>
+                      <td>{{\Carbon\Carbon::parse($member->passport_expire)->format('d/M/Y')}}</td>
+                      <td>{{ $member->phone ?? '' }}</td>
+                      <td>{{ $member->company->company_name ?? '' }}</td>
+                      <td>{{ $member->payment_total_amount ?? '' }}</td>
+                      <td>{{ $member->payment_discount ?? '' }}</td>
+                      <td>{{ $member->received_amount ?? '' }}</td>
+                      <td>{{ $member->received_amount ?? '' }}</td>
+                      <td>
+                      <div class="dropdown btn btn-success"><a style="color:#fff" class="dropdown-toggle" data-toggle="dropdown" href="#">Action</a>
+                        <ul class="dropdown-menu"  role="menu" aria-labelledby="dropdownMenu">
+                            <li> <a class="dropdown-item" href="{{ route('single.member.details', $member->uid) }}">Show</a></li>
+                            <li><a class="dropdown-item" href="#">Edit</a></li>
+                            <li><a class="dropdown-item" href="#">SMS Passport</a></li>
+                            <li><a class="dropdown-item" href="#">SMS Visa</a></li>
+                            <li><a class="dropdown-item" href="#">SMS Visa Collect</a></li>
+                            <li><a class="dropdown-item" href="#">Remove</a></li>
+                        </ul>
+                    </div>
+                         
+                      </td>
+                    </tr>
+                  @endforeach                  
                   </tfoot>
                 </table>
               </div>

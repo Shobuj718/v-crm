@@ -51,12 +51,18 @@
     </section>
     <!-- /.content -->
   </div>
+
+  
+
+
   @endsection
 
 @section('scripts')
 
 
 <script type="text/javascript">
+
+
 $(document).ready(function () {
   $.validator.setDefaults({
     submitHandler: function () {

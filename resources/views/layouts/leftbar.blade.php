@@ -131,43 +131,43 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('income')">
+                <a href="{{ route('income.report') }}" class="nav-link @yield('income')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Income</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('expense')">
+                <a href="{{ route('expense.report') }}" class="nav-link @yield('expense')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Expense</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('income-expense')">
+                <a href="{{ route('income.expense.report') }}" class="nav-link @yield('income-expense')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Income/Expense</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('due-installment')">
+                <a href="{{ route('due.installment') }}" class="nav-link @yield('due-installment')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Due Installment</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('passport-expired')">
+                <a href="{{ route('passport.expired') }}" class="nav-link @yield('passport-expired')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Passport Expired</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('visa-expired')">
+                <a href="{{ route('visa.expired') }}" class="nav-link @yield('visa-expired')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Visa Expired</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ asset('/dashboard') }}" class="nav-link @yield('cidb-submission')">
+                <a href="{{ route('cidb.report') }}" class="nav-link @yield('cidb-report')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>CIDB Submission</p>
                 </a>

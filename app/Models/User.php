@@ -14,6 +14,10 @@ class User extends Authenticatable
     use SoftDeletes;
 
 
+    public function companies(){
+        return $this->hasMany(Company::class);
+    }
+
     public function dateFormat($date){
         $time = strtotime($date);
         $newformat = date('Y-m-d',$time);

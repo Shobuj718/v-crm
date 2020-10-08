@@ -9,36 +9,18 @@
     .required{
       color:red;
     }
-
-    
-
   </style>
 
-  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
   
-   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
-  <style type="text/css">
-    .input-group-addon, .input-group-btn {
-        width: 1%;
-        white-space: nowrap;
-        vertical-align: bottom;
-    }
 
-    .input-group-btn {
-    position: relative;
-    font-size: 0;
-    white-space: nowrap;
-    vertical-align: bottom;
-}
-
-  </style>
 
 @endsection
 
@@ -68,9 +50,10 @@
                 <h3 class="card-title">Passport Informaion</h3>
               </div>
               </div>
-    
-                <!-- <input class="date form-control" type="text"> -->
-
+ <!-- <div class="container">
+    <h1>Laravel Bootstrap Datepicker</h1>
+    <input class="date form-control" type="text">
+</div> -->
                 <div class="form-group">
                   <label>Company<span class="required">*</span></label>
                   <select name="company_id" id="company_id" class="form-control select2" style="width: 100%;">
@@ -142,12 +125,10 @@
 
               <div class="form-group">
                 <label>Passport Sub.Date</label>
-                <input type="text" name="passport_sub_date" id="passport_sub_date" class="form-control passport_sub_date_select">
+                <input type="date" name="passport_sub_date" id="passport_sub_date" class="form-control passport_sub_date_select">
               </div>
 
             <!-- visa multiple image start -->
-
-
               <div class="input-group-visa control-group-visa increment-visa" >
                 <label>Visa Copy</label>
                 <input type="file" name="visa_copy[]" class="form-control">
@@ -167,7 +148,7 @@
 
             <div class="form-group">
                 <label>Visa Expire Date<span class="required">*</span></label>
-                <input type="text" name="visa_expire_date" id="visa_expire_date" class="form-control visa_expire_date_select">
+                <input type="date" name="visa_expire_date" id="visa_expire_date" class="form-control">
               </div>
 
             <div class="form-group">
@@ -182,7 +163,7 @@
 
               <div class="form-group">
                 <label>Visa Sub.Date</label>
-                <input type="text" name="visa_sub_date" id="visa_sub_date" class="form-control visa_sub_date_select">
+                <input type="date" name="visa_sub_date" id="visa_sub_date" class="form-control">
               </div>
 
             <div class="form-group">
@@ -197,7 +178,7 @@
 
               <div class="form-group">
                 <label>Medical Date</label>
-                <input type="text" name="medical_date" id="medical_date" class="form-control medical_date_select">
+                <input type="date" name="medical_date" id="medical_date" class="form-control">
               </div>
 
               <div class="input-group-levi control-group-levi increment-levi" >
@@ -256,7 +237,7 @@
 
             <div class="form-group">
                 <label>Birth Date<span class="required">*</span></label>
-                <input type="text" name="birth_date" id="birth_date" class="form-control birth_date_select">
+                <input type="date" name="birth_date" id="birth_date" class="form-control" placeholder="Enter birth date">
               </div>
 
               <div class="form-group">
@@ -382,7 +363,7 @@
 
               <div class="form-group">
                   <label>Delivery Date:</label>
-                  <input type="text" name="cidb_delivery_date" id="cidb_delivery_date" class="form-control cidb_delivery_date_select" />
+                  <input type="date" name="cidb_delivery_date" id="cidb_delivery_date" class="form-control" />
                 </div>
 
 
@@ -438,7 +419,7 @@
               </div>
               <div class="form-group">
                 <label>Refund Date</label>
-                <input type="text" name="deposit_refund_date" id="deposit_refund_date" class="form-control deposit_refund_date_select">
+                <input type="date" name="deposit_refund_date" id="deposit_refund_date" class="form-control">
               </div>
 
 
@@ -468,12 +449,12 @@
                     </div>
                     <div class="col-md-5">                  
                       <div class="form-group">
-                        <input type="text" name="diposit_date[]" id="diposit_date[]" class="form-control diposit_date_select">
+                        <input type="date" name="diposit_date[]" id="diposit_date[]" placeholder="asdfff" class="form-control">
                       </div>
                     </div>
                     <div class="col-md-5">                  
                       <div class="form-group">
-                        <input type="number" name="deposit_amount[]" id="deposit_amount[]"  class="form-control">
+                        <input type="number" name="deposit_amount[]" id="deposit_amount[]" placeholder="asdfff dd"  class="form-control">
                       </div>
                     </div>
                   </div>
@@ -573,7 +554,7 @@
                     </div>
                     <div class="col-md-4">                  
                       <div class="form-group">
-                        <input type="text" name="installment_date[]" id="installment_date[]"  class="form-control installment_date_select">
+                        <input type="date" name="installment_date[]" id="installment_date[]"  class="form-control">
                       </div>
                     </div>
                     <div class="col-md-4">                  
@@ -607,132 +588,19 @@
 
 <script type="text/javascript">
     $('.date').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto",
-        weekStart: 0,
-        //calendarWeeks: true,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
+       format: 'mm-dd-yyyy'
      });
 
     $('.cidb_subbmision_date_select').datepicker({  
-        format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto",
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
+       format: 'yyyy-mm-dd'
      }); 
 
     $('.passport_expire_date_select').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto",
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
+       format: 'yyyy-mm-dd'
      });
 
     $('.passport_sub_date_select').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto",
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
-     }); 
-
-    $('.visa_expire_date_select').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto",
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
-     });
-
-    $('.visa_sub_date_select').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto",
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
-     });
-
-    $('.medical_date_select').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
-     });
-
-    $('.birth_date_select').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
-     }); 
-
-    $('.cidb_delivery_date_select').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
-     });
-
-    $('.deposit_refund_date_select').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
-     });
-
-    $('.diposit_date_select').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
-     }); 
-
-    $('.diposit_date_selects').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
-     }); 
-
-    $('.installment_date_select').datepicker({  
-       format: 'yyyy-mm-dd',
-        weekStart: 0,
-        autoclose: true,
-        todayHighlight: true,
-        orientation: "auto"
+       format: 'yyyy-mm-dd'
      }); 
       
 </script> 
@@ -857,7 +725,7 @@
       var addButton = $('.add_button_deposit'); 
       var wrapper = $('.field_wrapper_deposit'); 
 
-      var fieldHTML = '<div class="row"><a href="javascript:void(0);" class="" title="Add field"><div class="col-md-1 btn btn- remove_button_deposit "><i class="fas fa-minus"></i></a></div><div class="col-md-1"> <p>1</p></div><div class="col-md-5"><div class="form-group"><input type="text" name="diposit_date[]" id="diposit_date[]" class="form-control diposit_date_selects"></div></div><div class="col-md-5"><div class="form-group"><input type="number" name="deposit_amount[]" id="deposit_amount[]" class="form-control"></div></div></div></div>';
+      var fieldHTML = '<div class="row"><a href="javascript:void(0);" class="" title="Add field"><div class="col-md-1 btn btn- remove_button_deposit "><i class="fas fa-minus"></i></a></div><div class="col-md-1"> <p>1</p></div><div class="col-md-5"><div class="form-group"><input type="date" name="diposit_date[]" id="diposit_date[]" class="form-control"></div></div><div class="col-md-5"><div class="form-group"><input type="number" name="deposit_amount[]" id="deposit_amount[]" class="form-control"></div></div></div></div>';
 
 
       var x = 1; //Initial field counter is 1
@@ -868,21 +736,6 @@
           if(x < maxField){ 
               x++; //Increment field counter
               $(wrapper).append(fieldHTML); //Add field html
-
-              /*var deposit_amounts = $('#deposit_amount').val();
-              var total_deposits = $(this).val();
-              console.log('deposit_amounts');
-              console.log(deposit_amounts);
-              console.log(total_deposits);*/
-
-              $('.diposit_date_selects').datepicker({  
-                 format: 'yyyy-mm-dd',
-                  weekStart: 0,
-                  autoclose: true,
-                  todayHighlight: true,
-                  orientation: "auto"
-               }); 
-
           }
       });
       
@@ -901,27 +754,17 @@
       var addButton = $('.add_button_installment'); 
       var wrapper = $('.field_wrapper_installment'); 
 
-      var fieldHTML = '<div class="row"><a href="javascript:void(0);" class="" title="Add field"><div class="col-md-1 btn btn- remove_button_installment "><i class="fas fa-minus"></i></a></div><div class="col-md-1"> <p>1</p></div><div class="col-md-4"><div class="form-group"><input type="text" name="installment_date[]" id="installment_date[]" class="form-control installment_date_select"></div></div><div class="col-md-4"><div class="form-group"><input type="number" name="received_amount[]" id="received_amount[]" class="form-control"></div></div><div class="col-md-2"><p>0</p></div></div></div>';
+      var fieldHTML = '<div class="row"><a href="javascript:void(0);" class="" title="Add field"><div class="col-md-1 btn btn- remove_button_installment "><i class="fas fa-minus"></i></a></div><div class="col-md-1"> <p>1</p></div><div class="col-md-4"><div class="form-group"><input type="date" name="installment_date[]" id="installment_date[]" class="form-control"></div></div><div class="col-md-4"><div class="form-group"><input type="number" name="received_amount[]" id="received_amount[]" class="form-control"></div></div><div class="col-md-2"><p>0</p></div></div></div>';
 
 
       var x = 1; //Initial field counter is 1
       
       //Once add button is clicked
       $(addButton).click(function(){
-
           //Check maximum number of input fields
           if(x < maxField){ 
               x++; //Increment field counter
               $(wrapper).append(fieldHTML); //Add field html
-
-                $('.installment_date_select').datepicker({  
-                   format: 'yyyy-mm-dd',
-                    weekStart: 0,
-                    autoclose: true,
-                    todayHighlight: true,
-                    orientation: "auto"
-                 }); 
-
           }
       });
       
@@ -1094,7 +937,7 @@ $(document).ready(function () {
 });
 
 function clearForm(){
-  $("#addMember")[0].reset();
+  $("#addExpense")[0].reset();
 }
 
 </script>
