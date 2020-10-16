@@ -16,15 +16,8 @@
 
 @section('content')
 	<div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            
-            <div class="card">
-              
-              <div class="card-body">
-
-              <div class="row" style="float:right;">
-
+<div class="row member-list-head-search-dd">
+                <div class="col-md-1"></div>
                 <div class="col-md-3">
                   <div class="form-group">
                     <select name="company_id" id="company_id" class="form-control select2" style="width: 100%;">
@@ -46,19 +39,28 @@
                     <input type="date" name="passport_expire" id="passport_expire" class="form-control" placeholder="End date">
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <div class="form-group">
                     <input type="text" name="passport_expire" id="passport_expire" class="form-control" placeholder="Write your search">
                   </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                   <button type="submit" class="btn btn-success">Search</button>
-                </div>
-                <div class="col-md-1">
                   <button type="submit" class="btn btn-warning">Clear</button>
                 </div>
+    </div>
 
-              </div>
+
+
+
+
+
+        <div class="row">
+          <div class="col-12">
+            
+            <div class="card">
+              
+              <div class="card-body">
 
                 <table id="" class="table table-bordered table-striped">
                   <thead>
@@ -100,7 +102,7 @@
 
                 <div class="row no-print">
                 <div class="col-12">
-                  <a href="invoice-print.html" target="_blank" class="btn btn-default float-right"><i class="fas fa-print"></i> Print</a>
+                  <a href="#" target="_blank" class="btn btn-default float-right"><i class="fas fa-print"></i> Print</a>
                   <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Exel</button>
                   <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> PDF</button>

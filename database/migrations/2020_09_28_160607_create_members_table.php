@@ -18,6 +18,7 @@ class CreateMembersTable extends Migration
             $table->string('uid')->unique();
             $table->integer('user_id')->nullable();
             $table->integer('company_id')->nullable();
+            $table->string('company_name')->nullable();
             //need other table ...
             // passport copy, visa copy, levi, i-card, others, document,  cidb copy, 
             // deposit date, deposit amount
@@ -81,6 +82,7 @@ class CreateMembersTable extends Migration
 
             $table->timestamp('installment_date')->nullable();
             $table->string('received_amount')->nullable();
+            $table->string('due_amount')->nullable();
 
 
 

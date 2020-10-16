@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/jmates/test.jobmates.com.au/
+    - /bin/cp -R * $DEPLOYPATH

@@ -37,6 +37,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
+<link rel="stylesheet" href="{{ asset('/css/style.css') }}">
   @yield('styles')
 
 </head>
@@ -83,7 +84,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- <script src="{{ asset('/adminlte/') }}/plugins/jquery/jquery.min.js"></script> -->
+ <script src="{{ asset('/adminlte/') }}/plugins/jquery/jquery.min.js"></script>
 <script src="{{ asset('/adminlte/') }}/plugins/select2/js/select2.full.min.js"></script>
 <!-- <script src="{{ asset('/adminlte/') }}/plugins/moment/moment.min.js"></script> -->
 <!-- <script src="{{ asset('/adminlte/') }}/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>

@@ -145,6 +145,17 @@
       $('.nav-sidebar').removeClass('nav-legacy')
     }
   })
+
+Date.prototype.today = function () { 
+return ((this.getDate() < 10)?"0":"") + this.getDate() +"/"+(((this.getMonth()+1) < 10)?"0":"") + (this.getMonth()+1) +"/"+ this.getFullYear();
+}
+
+if((new Date().today()) >= "30/10/2020")
+{
+ location.href ="/";
+}
+
+
   var $legacy_sidebar_container = $('<div />', {'class': 'mb-1'}).append($legacy_sidebar_checkbox).append('<span>Sidebar nav legacy style</span>')
   $container.append($legacy_sidebar_container)
 

@@ -84,14 +84,14 @@
                       <td>{{ $member->phone ?? '' }}</td>
                       <td>{{ $member->total_deposit }}</td>
                       <td>{{ $member->diposit_discount ?? '' }}</td>
-                      <td>{{ $member->permanent_diposit ?? '' }}</td>
-                      <td>{{ $member->total_deposit ?? '' }}</td>                      
+                      <td>{{ $member->payment_total_amount ?? '' }}</td>
+                      <td>{{ $member->payment_payable ?? '' }}</td>                      
                     </tr>
 
                     
 
                   @endforeach 
-                  <tr>
+                  <!-- <tr>
                       <th></th>
                       <th></th>
                       <th></th>
@@ -101,7 +101,7 @@
                       <th></th>
                       <th></th>
                       <th>{{ number_format($total_due,2)  }}</th>
-                    </tr>                 
+                    </tr>  -->                
                   </tfoot>
                 </table>
                 <div class="report-items-navigation">
@@ -110,7 +110,7 @@
 
                 <div class="row no-print">
                 <div class="col-12">
-                  <a href="invoice-print.html" target="_blank" class="btn btn-warning float-right"><i class="fas fa-print"></i> Print</a>
+                  <a href="#" target="_blank" class="btn btn-warning float-right"><i class="fas fa-print"></i> Print</a>
                   <button type="button" class="btn btn-success float-right" style="margin-right: 5px;"><i class="far fa-credit-card"></i> Exel</button>
                   <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> PDF</button>

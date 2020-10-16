@@ -8,21 +8,18 @@
   <style type="text/css">
     .required{
       color:red;
-    }
-
-    
-
+    }  
   </style>
 
-  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-  
+ 
    
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script> 
 
   <style type="text/css">
     .input-group-addon, .input-group-btn {
@@ -116,11 +113,11 @@
             </div> -->
 
 
-            <div class="input-group control-group increment" >
+            <div class="form-group input-group control-group increment" >
                 <label>Passport Copy</label>
                 <input type="file" name="passport_copy[]" class="form-control">
                 <div class="input-group-btn"> 
-                  <button class="btn btn-info" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                  <button class="btn btn-info btn-info-passport" type="button"><i class="glyphicon glyphicon-plus"></i></button>
                 </div>
               </div>
               <div class="clone hide">
@@ -136,30 +133,30 @@
 
               <div class="form-group">
                 <label>Passport Expire<span class="required">*</span></label>
-                <input type="text" name="passport_expire" id="passport_expire" class="form-control passport_expire_date_select">
+                <input type="date" name="passport_expire" id="passport_expire" class="form-control passport_expire_date_select">
               </div>
 
 
               <div class="form-group">
                 <label>Passport Sub.Date</label>
-                <input type="text" name="passport_sub_date" id="passport_sub_date" class="form-control passport_sub_date_select">
+                <input type="date" name="passport_sub_date" id="passport_sub_date" class="form-control passport_sub_date_select">
               </div>
 
             <!-- visa multiple image start -->
 
 
-              <div class="input-group-visa control-group-visa increment-visa" >
+              <div class="form-group input-group control-group input-group-visa control-group-visa increment-visa" >
                 <label>Visa Copy</label>
                 <input type="file" name="visa_copy[]" class="form-control">
                 <div class="input-group-btn"> 
-                  <button class="btn btn-info-visa" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                  <button class="btn btn-info btn-info-visa" type="button"><i class="glyphicon glyphicon-plus"></i></button>
                 </div>
               </div>
               <div class="clone-visa hide">
-                <div class="control-group-visa input-group-visa" style="margin-top:10px">
+                <div class="input-group control-group control-group-visa input-group-visa" style="margin-top:10px">
                   <input type="file" name="visa_copy[]" class="form-control">
                   <div class="input-group-btn"> 
-                    <button class="btn btn-danger-visa"><i class="glyphicon glyphicon-remove"></i> </button>
+                    <button class="btn btn-danger btn-danger-visa"><i class="glyphicon glyphicon-remove"></i> </button>
                   </div>
                 </div>
               </div>
@@ -167,7 +164,7 @@
 
             <div class="form-group">
                 <label>Visa Expire Date<span class="required">*</span></label>
-                <input type="text" name="visa_expire_date" id="visa_expire_date" class="form-control visa_expire_date_select">
+                <input type="date" name="visa_expire_date" id="visa_expire_date" class="form-control visa_expire_date_select">
               </div>
 
             <div class="form-group">
@@ -182,7 +179,7 @@
 
               <div class="form-group">
                 <label>Visa Sub.Date</label>
-                <input type="text" name="visa_sub_date" id="visa_sub_date" class="form-control visa_sub_date_select">
+                <input type="date" name="visa_sub_date" id="visa_sub_date" class="form-control visa_sub_date_select">
               </div>
 
             <div class="form-group">
@@ -197,53 +194,53 @@
 
               <div class="form-group">
                 <label>Medical Date</label>
-                <input type="text" name="medical_date" id="medical_date" class="form-control medical_date_select">
+                <input type="date" name="medical_date" id="medical_date" class="form-control medical_date_select">
               </div>
 
-              <div class="input-group-levi control-group-levi increment-levi" >
+              <div class="form-group input-group control-group input-group-levi control-group-levi increment-levi" >
                 <label>Levi</label>
                 <input type="file" name="levi_file[]" class="form-control">
                 <div class="input-group-btn"> 
-                  <button class="btn btn-info-levi" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                  <button class="btn btn-info btn-info-levi" type="button"><i class="glyphicon glyphicon-plus"></i></button>
                 </div>
               </div>
               <div class="clone-levi hide">
-                <div class="control-group-levi input-group-levi" style="margin-top:10px">
+                <div class=" input-group control-group control-group-levi input-group-levi" style="margin-top:10px">
                   <input type="file" name="levi_file[]" class="form-control">
                   <div class="input-group-btn"> 
-                    <button class="btn btn-danger-levi"><i class="glyphicon glyphicon-remove"></i> </button>
+                    <button class="btn btn-danger btn-danger-levi"><i class="glyphicon glyphicon-remove"></i> </button>
                   </div>
                 </div>
               </div>
 
-            <div class="input-group-icard control-group-icard increment-icard" >
+            <div class="form-group input-group control-group input-group-icard control-group-icard increment-icard" >
                 <label>I-Card</label>
                 <input type="file" name="icard_file[]" class="form-control">
                 <div class="input-group-btn"> 
-                  <button class="btn btn-info-icard" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                  <button class="btn btn-info btn-info-icard" type="button"><i class="glyphicon glyphicon-plus"></i></button>
                 </div>
               </div>
               <div class="clone-icard hide">
-                <div class="control-group-icard input-group-icard" style="margin-top:10px">
+                <div class=" input-group control-group control-group-icard input-group-icard" style="margin-top:10px">
                   <input type="file" name="icard_file[]" class="form-control">
                   <div class="input-group-btn"> 
-                    <button class="btn btn-danger-icard"><i class="glyphicon glyphicon-remove"></i> </button>
+                    <button class="btn btn-danger btn-danger-icard"><i class="glyphicon glyphicon-remove"></i> </button>
                   </div>
                 </div>
               </div>
 
-            <div class="input-group-other control-group-other increment-other" >
+            <div class="form-group input-group control-group input-group-other control-group-other increment-other" >
                 <label>Others</label>
                 <input type="file" name="other_file[]" class="form-control">
                 <div class="input-group-btn"> 
-                  <button class="btn btn-info-other" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                  <button class="btn btn-info btn-info-other" type="button"><i class="glyphicon glyphicon-plus"></i></button>
                 </div>
               </div>
               <div class="clone-other hide">
-                <div class="control-group-other input-group-other" style="margin-top:10px">
+                <div class="form-group input-group control-group control-group-other input-group-other" style="margin-top:10px">
                   <input type="file" name="other_file[]" class="form-control">
                   <div class="input-group-btn"> 
-                    <button class="btn btn-danger-other"><i class="glyphicon glyphicon-remove"></i> </button>
+                    <button class="btn btn-danger btn-danger-other"><i class="glyphicon glyphicon-remove"></i> </button>
                   </div>
                 </div>
               </div>
@@ -256,7 +253,7 @@
 
             <div class="form-group">
                 <label>Birth Date<span class="required">*</span></label>
-                <input type="text" name="birth_date" id="birth_date" class="form-control birth_date_select">
+                <input type="date" name="birth_date" id="birth_date" class="form-control birth_date_select">
               </div>
 
               <div class="form-group">
@@ -304,16 +301,18 @@
                   </div>
               </div>
 
-              <label>Letter Collection<span class="required">*</span></label>
-              <div class="form-check">                
-                <input type="checkbox" name="letter_bank" id="letter_bank" class="form-check-input">
-                <label style="padding-right:30px;" class="form-check-label" for="exampleCheck1">Letter Bank</label>
+              <div class="form-group">
+                <label>Letter Collection<span class="required">*</span></label>
+                <div class="form-check">                
+                  <input type="checkbox" name="letter_bank" id="letter_bank" class="form-check-input">
+                  <label style="padding-right:30px;" class="form-check-label" for="exampleCheck1">Letter Bank</label>
 
-                <input type="checkbox" name="home_country" id="home_country" class="form-check-input">
-                <label style="padding-right:30px;" class="form-check-label" for="exampleCheck2">Home Country</label>
+                  <input type="checkbox" name="home_country" id="home_country" class="form-check-input">
+                  <label style="padding-right:30px;" class="form-check-label" for="exampleCheck2">Home Country</label>
 
-                <input type="checkbox" name="out_station" id="out_station" class="form-check-input" >
-                <label style="padding-right:30px;" class="form-check-label" for="exampleCheck3">Out Station</label>
+                  <input type="checkbox" name="out_station" id="out_station" class="form-check-input" >
+                  <label style="padding-right:30px;" class="form-check-label" for="exampleCheck3">Out Station</label>
+                </div>
               </div>
 
                 <div class="form-group">
@@ -321,18 +320,18 @@
                   <input type="text" name="current_status" id="current_status" class="form-control" placeholder="Enter current status">
                 </div>
 
-                <div class="input-group-document control-group-document increment-document" >
+                <div class="form-group input-group control-group input-group-document control-group-document increment-document" >
                 <label>Document</label>
                 <input type="file" name="document[]" class="form-control">
                 <div class="input-group-btn"> 
-                  <button class="btn btn-info-document" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                  <button class="btn btn-info btn-info-document" type="button"><i class="glyphicon glyphicon-plus"></i></button>
                 </div>
               </div>
               <div class="clone-document hide">
-                <div class="control-group-document input-group-document" style="margin-top:10px">
+                <div class="form-group input-group control-group control-group-document input-group-document" style="margin-top:10px">
                   <input type="file" name="document[]" class="form-control">
                   <div class="input-group-btn"> 
-                    <button class="btn btn-danger-document"><i class="glyphicon glyphicon-remove"></i> </button>
+                    <button class="btn btn-danger btn-danger-document"><i class="glyphicon glyphicon-remove"></i> </button>
                   </div>
                 </div>
               </div>
@@ -377,12 +376,12 @@
 
               <div class="form-group">
                   <label> Submission Date:</label>
-                    <input type="text" name="cidb_subbmision_date" id="cidb_subbmision_date" class="form-control cidb_subbmision_date_select" >
+                    <input type="date" name="cidb_subbmision_date" id="cidb_subbmision_date" class="form-control cidb_subbmision_date_select" >
                 </div>
 
               <div class="form-group">
                   <label>Delivery Date:</label>
-                  <input type="text" name="cidb_delivery_date" id="cidb_delivery_date" class="form-control cidb_delivery_date_select" />
+                  <input type="date" name="cidb_delivery_date" id="cidb_delivery_date" class="form-control cidb_delivery_date_select" />
                 </div>
 
 
@@ -397,18 +396,18 @@
                 </div>
 
 
-            <div class="input-group-cidb control-group-cidb increment-cidb" >
+            <div class="form-group input-group control-group input-group-cidb control-group-cidb increment-cidb" >
                 <label>CIDB Copy</label>
                 <input type="file" name="cidb_file[]" class="form-control">
                 <div class="input-group-btn"> 
-                  <button class="btn btn-info-cidb" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                  <button class="btn btn-info btn-info-cidb" type="button"><i class="glyphicon glyphicon-plus"></i></button>
                 </div>
               </div>
               <div class="clone-cidb hide">
-                <div class="control-group-cidb input-group-cidb" style="margin-top:10px">
+                <div class="form-group input-group control-group control-group-cidb input-group-cidb" style="margin-top:10px">
                   <input type="file" name="cidb_file[]" class="form-control">
                   <div class="input-group-btn"> 
-                    <button class="btn btn-danger-cidb"><i class="glyphicon glyphicon-remove"></i> </button>
+                    <button class="btn btn-danger btn-danger-cidb"><i class="glyphicon glyphicon-remove"></i> </button>
                   </div>
                 </div>
               </div>
@@ -438,16 +437,16 @@
               </div>
               <div class="form-group">
                 <label>Refund Date</label>
-                <input type="text" name="deposit_refund_date" id="deposit_refund_date" class="form-control deposit_refund_date_select">
+                <input type="date" name="deposit_refund_date" id="deposit_refund_date" class="form-control deposit_refund_date_select">
               </div>
 
 
 
-              <div class="row">                
+              <div class="row mb10">                
                 <div class="col-md-1">                  
-                      <a href="javascript:void(0);" class="btn btn-warning " title="Add field"><i class="fas fa-home"></i></a>
+                      <a href="javascript:void(0);" class="btn btn-warning " title="Add field"><i class="fas fa-list"></i></a>
                     </div>
-                <div class="col-md-1">                  
+                <div class="col-md-1 hash-col">                  
                   <p>#</p>
                 </div>
                 <div class="col-md-5">                  
@@ -463,12 +462,12 @@
                     <div class="col-md-1">                  
                       <a href="javascript:void(0);" class="btn btn-primary add_button_deposit" title="Add field"><i class="fas fa-plus"></i></a>
                     </div>
-                    <div class="col-md-1">                  
+                    <div class="col-md-1 hash-col">                  
                       <p>1</p>
                     </div>
                     <div class="col-md-5">                  
                       <div class="form-group">
-                        <input type="text" name="diposit_date[]" id="diposit_date[]" class="form-control diposit_date_select">
+                        <input type="date" name="diposit_date[]" id="diposit_date[]" class="form-control diposit_date_select">
                       </div>
                     </div>
                     <div class="col-md-5">                  
@@ -488,11 +487,11 @@
             </div>
               
 
-              <div class="row">                
+              <div class="row mb10">                
                 <div class="col-md-1">                  
-                      <a href="javascript:void(0);" class="btn btn-warning " title="Add field"><i class="fas fa-home"></i></a>
+                      <a href="javascript:void(0);" class="btn btn-warning " title="Add field"><i class="fas fa-list"></i></a>
                     </div>
-                <div class="col-md-1">                  
+                <div class="col-md-1 hash-col">                  
                   <p>#</p>
                 </div>
                 <div class="col-md-5">                  
@@ -508,7 +507,7 @@
                     <div class="col-md-1">                  
                       <a href="javascript:void(0);" class="btn btn-primary add_button_category_payment" title="Add field"><i class="fas fa-plus"></i></a>
                     </div>
-                    <div class="col-md-1">                  
+                    <div class="col-md-1 hash-col">                  
                       <p>1</p>
                     </div>
                     <div class="col-md-5">                  
@@ -523,7 +522,7 @@
                       </div>
                     <div class="col-md-5">                  
                       <div class="form-group">
-                        <input type="number" name="payment_amount[]" id="payment_amount" placeholder=""  class="form-control">
+                        <input type="number" name="payment_amount[]" id="payment_amount" placeholder=""  class="form-control txt" onKeyUp="SumAllPAyment()">
                       </div>
                     </div>
                   </div>
@@ -532,7 +531,7 @@
 
               
 
-              <div class="form-group">
+               <div class="form-group">
                 <label>Total Amount</label>
                 <input type="number" name="payment_total_amount" id="payment_total_amount" class="form-control" placeholder="Enter total amount">
               </div>
@@ -545,11 +544,11 @@
                 <input type="number" name="payment_payable" id="payment_payable" class="form-control" placeholder="">
               </div>
 
-              <div class="row">                
+              <div class="row mb10">                
                 <div class="col-md-1">                  
-                      <a href="javascript:void(0);" class="btn btn-warning " title="Add field"><i class="fas fa-home"></i></a>
+                      <a href="javascript:void(0);" class="btn btn-warning " title="Add field"><i class="fas fa-list"></i></a>
                     </div>
-                <div class="col-md-1">                  
+                <div class="col-md-1 hash-col">                  
                   <p>#</p>
                 </div>
                 <div class="col-md-4">                  
@@ -558,9 +557,9 @@
                 <div class="col-md-4">                  
                     <label>Received Amount</label>                  
                 </div>
-                <div class="col-md-2">                  
+                 <!-- <div class="col-md-2">                  
                     <label>Due</label>                  
-                </div>
+                </div> -->
               </div>
 
               <div class="field_wrapper_installment">
@@ -568,22 +567,22 @@
                     <div class="col-md-1">                  
                       <a href="javascript:void(0);" class="btn btn-primary add_button_installment " title="Add field"><i class="fas fa-plus"></i></a>
                     </div>
-                    <div class="col-md-1">                  
+                    <div class="col-md-1 hash-col">                  
                       <p>1</p>
                     </div>
-                    <div class="col-md-4">                  
+                    <div class="col-md-5">                  
                       <div class="form-group">
-                        <input type="text" name="installment_date[]" id="installment_date[]"  class="form-control installment_date_select">
+                        <input type="date" name="installment_date[]" id="installment_date[]"  class="form-control installment_date_select">
                       </div>
                     </div>
-                    <div class="col-md-4">                  
+                    <div class="col-md-5">                  
                       <div class="form-group">
                         <input type="number" name="received_amount[]" id="received_amount[]" class="form-control">
                       </div>
                     </div>
-                    <div class="col-md-2">                  
-                      <p>0</p>
-                    </div>
+                     <!-- <div class="col-md-2">                  
+                      <input type="number"  name="due_amount[]" id="due_amount[]" class="form-control">
+                    </div> -->
                   </div>
               </div>
 
@@ -604,6 +603,30 @@
 @endsection
 
 @section('scripts')
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+ });
+
+ function SumAllPAyment() {
+     var sum = 0;
+     $(".txt").each(function () {
+         if (!isNaN(this.value) && this.value.length != 0) {
+             sum += parseFloat(this.value);
+         }
+     });
+
+    $("#payment_total_amount").val(sum.toFixed(2));
+
+    var total2 = $('#payment_discount').val();
+    var totalwithgstss = Number(sum) - total2;
+    $("input#payment_payable").val(totalwithgstss.toFixed(2));
+
+ }
+ 
+</script>
 
 <script type="text/javascript">
     $('.date').datepicker({  
@@ -771,6 +794,14 @@
             $("input#permanent_diposit").val(totalwithgst.toFixed(2));
         });
 
+
+        $("input#received_amount").keydown(function(){
+            var total_rev = $(this).val();
+            var total_deposit2 = $('#payment_payable').val();
+            var totalwithgst = Number(total_deposit2) - Number(total_rev);
+            $("input#permanent_diposit").val(totalwithgst.toFixed(2));
+        });
+
         
 
     });
@@ -783,16 +814,19 @@
       var addButton = $('.add_button_category_payment'); 
       var wrapper = $('.field_wrapper_category_payment'); 
 
-    var fieldHTML = '<div class="row"><a href="javascript:void(0);" class="" title="Add field"><div class="col-md-1 btn btn- remove_button_category_payment"><i class="fas fa-minus"></i></a></div><div class="col-md-1"> <p>1</p></div><div class="col-md-5"><div class="form-group"><select name="payment_category_id[]" id="payment_category_id[]" class="form-control select2" style="width: 100%;"><option selected value="">Select</option>@foreach($expense_categories as $expense_category)<option value="{{ $expense_category->id ?? '' }}">{{ $expense_category->expense_category_name ?? '' }}</option>@endforeach</select></div></div><div class="col-md-5"><div class="form-group"><input type="number" name="payment_amount[]" id="payment_amount" class="form-control"></div></div></div></div>';
+    /*var fieldHTML = '<div class="row"><div class="col-md-1 remove_button_category_payment"><a href="javascript:void(0);" class="btn btn-danger" title="Add field"><i class="glyphicon glyphicon-remove"></i></a></div><div class="col-md-1 hash-col"> <p>1</p></div><div class="col-md-5"><div class="form-group"><select name="payment_category_id[]" id="payment_category_id[]" class="form-control select2" style="width: 100%;"><option selected value="">Select</option>@foreach($expense_categories as $expense_category)<option value="{{ $expense_category->id ?? '' }}">{{ $expense_category->expense_category_name ?? '' }}</option>@endforeach</select></div></div><div class="col-md-5"><div class="form-group"><input type="number" name="payment_amount[]" id="payment_amount" class="form-control txt" onKeyUp="SumAllPAyment()"></div></div></div></div>';*/
 
 
       var x = 1; //Initial field counter is 1
+      var t = 1; //Initial field counter is 1
       
       //Once add button is clicked
       $(addButton).click(function(){
           //Check maximum number of input fields
           if(x < maxField){ 
               x++; //Increment field counter
+              var tooo = ++t;
+              var fieldHTML = '<div class="row"><div class="col-md-1 remove_button_category_payment"><a href="javascript:void(0);" class="btn btn-danger" title="Add field"><i class="glyphicon glyphicon-remove"></i></a></div><div class="col-md-1 hash-col"> <p>'+tooo+'</p></div><div class="col-md-5"><div class="form-group"><select name="payment_category_id[]" id="payment_category_id[]" class="form-control select2" style="width: 100%;"><option selected value="">Select</option>@foreach($expense_categories as $expense_category)<option value="{{ $expense_category->id ?? '' }}">{{ $expense_category->expense_category_name ?? '' }}</option>@endforeach</select></div></div><div class="col-md-5"><div class="form-group"><input type="number" name="payment_amount[]" id="payment_amount" class="form-control txt" onKeyUp="SumAllPAyment()"></div></div></div></div>';
               $(wrapper).append(fieldHTML); //Add field html
           }
       });
@@ -802,6 +836,7 @@
           e.preventDefault();
           $(this).parent('div').remove(); //Remove field html
           x--; //Decrement field counter
+          --t; //Decrement field counter
       });
   });
 </script>
@@ -857,16 +892,20 @@
       var addButton = $('.add_button_deposit'); 
       var wrapper = $('.field_wrapper_deposit'); 
 
-      var fieldHTML = '<div class="row"><a href="javascript:void(0);" class="" title="Add field"><div class="col-md-1 btn btn- remove_button_deposit "><i class="fas fa-minus"></i></a></div><div class="col-md-1"> <p>1</p></div><div class="col-md-5"><div class="form-group"><input type="text" name="diposit_date[]" id="diposit_date[]" class="form-control diposit_date_selects"></div></div><div class="col-md-5"><div class="form-group"><input type="number" name="deposit_amount[]" id="deposit_amount[]" class="form-control"></div></div></div></div>';
+      /*var fieldHTML = '<div class="row"><div class="col-md-1 remove_button_deposit "><a href="javascript:void(0);" class="btn btn-danger" title="Add field"><i class="glyphicon glyphicon-remove"></i></a></div><div class="col-md-1 hash-col"> <p>1</p></div><div class="col-md-5"><div class="form-group"><input type="date" name="diposit_date[]" id="diposit_date[]" class="form-control diposit_date_selects"></div></div><div class="col-md-5"><div class="form-group"><input type="number" name="deposit_amount[]" id="deposit_amount[]" class="form-control"></div></div></div></div>';*/
 
 
       var x = 1; //Initial field counter is 1
+      var z = 1; //Initial field counter is 1
       
       //Once add button is clicked
       $(addButton).click(function(){
           //Check maximum number of input fields
           if(x < maxField){ 
               x++; //Increment field counter
+              var too = ++z;
+              var fieldHTML = '<div class="row"><div class="col-md-1 remove_button_deposit "><a href="javascript:void(0);" class="btn btn-danger" title="Add field"><i class="glyphicon glyphicon-remove"></i></a></div><div class="col-md-1 hash-col"> <p>'+too+'</p></div><div class="col-md-5"><div class="form-group"><input type="date" name="diposit_date[]" id="diposit_date[]" class="form-control diposit_date_selects"></div></div><div class="col-md-5"><div class="form-group"><input type="number" name="deposit_amount[]" id="deposit_amount[]" class="form-control"></div></div></div></div>';
+
               $(wrapper).append(fieldHTML); //Add field html
 
               /*var deposit_amounts = $('#deposit_amount').val();
@@ -891,6 +930,7 @@
           e.preventDefault();
           $(this).parent('div').remove(); //Remove field html
           x--; //Decrement field counter
+          --z; //Decrement field counter
       });
   });
 </script>
@@ -901,10 +941,14 @@
       var addButton = $('.add_button_installment'); 
       var wrapper = $('.field_wrapper_installment'); 
 
-      var fieldHTML = '<div class="row"><a href="javascript:void(0);" class="" title="Add field"><div class="col-md-1 btn btn- remove_button_installment "><i class="fas fa-minus"></i></a></div><div class="col-md-1"> <p>1</p></div><div class="col-md-4"><div class="form-group"><input type="text" name="installment_date[]" id="installment_date[]" class="form-control installment_date_select"></div></div><div class="col-md-4"><div class="form-group"><input type="number" name="received_amount[]" id="received_amount[]" class="form-control"></div></div><div class="col-md-2"><p>0</p></div></div></div>';
+      /*var fieldHTML = '<div class="row"><div class="col-md-1  remove_button_installment "><a href="javascript:void(0);" class="btn btn-danger" title="Add field"><i class="glyphicon glyphicon-remove"></i></a></div><div class="col-md-1 hash-col"> <p>1</p></div><div class="col-md-5"><div class="form-group"><input type="date" name="installment_date[]" id="installment_date[]" class="form-control installment_date_select"></div></div><div class="col-md-5"><div class="form-group"><input type="number" name="received_amount[]" id="received_amount[]" class="form-control"></div></div></div></div>';*/
+
+      //<div class="col-md-2"><p>0</p></div>
+      // next time will added this line
 
 
       var x = 1; //Initial field counter is 1
+      var z = 1; //Initial field counter is 1
       
       //Once add button is clicked
       $(addButton).click(function(){
@@ -912,6 +956,9 @@
           //Check maximum number of input fields
           if(x < maxField){ 
               x++; //Increment field counter
+              var to = ++z;
+              var fieldHTML = '<div class="row"><div class="col-md-1  remove_button_installment "><a href="javascript:void(0);" class="btn btn-danger" title="Add field"><i class="glyphicon glyphicon-remove"></i></a></div><div class="col-md-1 hash-col"> <p>'+to+'</p></div><div class="col-md-5"><div class="form-group"><input type="date" name="installment_date[]" id="installment_date[]" class="form-control installment_date_select"></div></div><div class="col-md-5"><div class="form-group"><input type="number" name="received_amount[]" id="received_amount[]" class="form-control"></div></div></div></div>';
+
               $(wrapper).append(fieldHTML); //Add field html
 
                 $('.installment_date_select').datepicker({  
@@ -930,6 +977,7 @@
           e.preventDefault();
           $(this).parent('div').remove(); //Remove field html
           x--; //Decrement field counter
+          --z; //Decrement field counter
       });
   });
 </script>
@@ -938,7 +986,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
   
-      $(".btn-info").click(function(){ 
+      $(".btn-info-passport").click(function(){ 
           var html = $(".clone").html();
           $(".increment").after(html);
       });
@@ -1053,7 +1101,7 @@ $(document).ready(function () {
     },
     submitHandler: function () {
       
-          alert( "Form successful submitted!" );
+          //alert( "Form successful submitted!" );
           //return false;
 
           var form = $('#addMember')[0];       
@@ -1077,11 +1125,13 @@ $(document).ready(function () {
                   //window.location.href = response.data.redirect_url;
               }else{
                 $('.alert-error').css("display", "block");
-                $('.error').html(response.data.message).show().delay(5000).fadeOut();
+                $('.error').html(response.data.message).show().delay(20000).fadeOut();
               }
               
           })
           .catch(function (response) {
+              $('.alert-error').css("display", "block");
+              $('.error').html(response.data.message).show().delay(20000).fadeOut();
               console.log(response);
           });
 

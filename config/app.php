@@ -123,6 +123,14 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+
+    'twilio' => [
+        'TWILIO_AUTH_TOKEN'  => env('TWILIO_AUTH_TOKEN'),
+        'TWILIO_ACCOUNT_SID' => env('TWILIO_ACCOUNT_SID'),
+        'TWILIO_APP_SID'     => env('TWILIO_APP_SID')
+    ],
+
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -165,6 +173,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -226,6 +235,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
     ],
 

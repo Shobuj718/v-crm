@@ -56,7 +56,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('member.list') }}" class="nav-link @yield('member-list')">
+                <a href="{{ route('membersearch.index') }}" class="nav-link @yield('member-list')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Members List</p>
                 </a>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Str;
 
+use DB;
 use Auth;
 use App\Models\Visa;
 use App\Models\Cidb;
@@ -30,12 +31,70 @@ class MemberController extends Controller
     	$expense_categories = ExpenseCategory::all();
     	return view('admin.add-member', compact('companies', 'expense_categories'));
     }
-    public function memberList(){
+    public function memberList2(Request $request){
+      
+        if(request()->ajax()){
 
-        $members = Member::all();
+            if(!empty($request->company_id)){
+               $members = DB::table('members')
+                 //->select('CustomerName', 'Gender', 'Address', 'City', 'PostalCode', 'Country')
+                 ->where('company_id', $request->company_id)
+                 //->where('Country', $request->filter_country)
+                 //->whereDate('visa_expire_date', '>', date('Y-m-d H:i:s'))
+                 ->get();
+              }
+              else
+              {
+               $members = DB::table('members')->orderBy('id', 'asc')
+                 //->whereDate('visa_expire_date', '>', date('Y-m-d H:i:s'))
+                 ->get();
+              }
+              return datatables()->of($members)
+
+              
+
+              ->addColumn('action', function ($member) {
+                return '<div class="dropdown btn btn-" style="background-color:#c53434;"><a style="background-color:#c53434;color:#fff" class="dropdown-toggle" data-toggle="dropdown" href="#">Action</a>
+                        <ul class="dropdown-menu"  role="menu" aria-labelledby="dropdownMenu">
+                            <li> <a class="dropdown-item" href="'.route('single.member.details',$member->uid).'")>Show</a></li>
+                            <li><a class="dropdown-item" href="#">Edit</a></li>
+                            <li><a class="dropdown-item" href="#">SMS Passport</a></li>
+                            <li><a class="dropdown-item" href="#">SMS Visa</a></li>
+                            <li><a class="dropdown-item" href="#">SMS Visa Collect</a></li>
+                            <li><a class="dropdown-item" href="#">Remove</a></li>
+                        </ul>
+                      </div>';
+                })
+                ->setRowClass(function ($member) {
+                    return $member->id % 2 == 0 ? 'alert-success' : 'alert-warning';
+                })
+
+                ->editColumn('passport_expire', function ($member) {
+                    return $member->passport_expire ? with(new \Carbon\Carbon($member->passport_expire))->format('d/M/Y') : '';
+                })
+
+                ->editColumn('visa_expire_date', function ($member) {
+                    return $member->visa_expire_date ? with(new \Carbon\Carbon($member->visa_expire_date))->format('d/M/Y') : '';
+                })
+
+                
+              /*->addColumn('action', function ($user) {
+                return '<a href="#edit-'.$user->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+                })*/
+              ->make(true);
+         }
+         
+        $companies = Company::where('status', 'active')->get();
+        
+        return view('admin.member-list', compact('companies'));
+    }
+
+    public function memberList(){
+        //dd(date('Y-m-d H:i:s'));
+        $members = Member::orderBy('id', 'asc')->whereDate('visa_expire_date', '>', date('Y-m-d H:i:s'))->get();
         $companies = Company::where('status', 'active')->get();
     	
-    	return view('admin.member-list', compact('members', 'companies'));
+    	return view('admin.member-list2', compact('members', 'companies'));
     }
 
     public function storeMember(Request $request){
@@ -43,7 +102,7 @@ class MemberController extends Controller
          
         //return response()->json($request->all());          	
 
-    	//try {
+    	try {
     		
             $user = Auth::user();
     		//return response()->json($user);
@@ -87,7 +146,7 @@ class MemberController extends Controller
     		$member->phone_bd 				= $request->phone_bd;
     		$member->phone_emergency 		= $request->phone_emergency;
     		$member->email 					= $request->email;
-    		$member->member_image 			= $request->member_image;
+    		//$member->member_image 			= $request->member_image;
     		$member->present_address 		= $request->present_address;
     		$member->parmanent_address 		= $request->parmanent_address;
 
@@ -106,7 +165,7 @@ class MemberController extends Controller
     		$member->passport_status 		= $request->passport_status;
 
     		//cidb info
-    		$member->cidb_subbmision_date 	= $request->cidb_subbmision_date;
+    		//$member->cidb_subbmision_date 	= $request->cidb_subbmision_date;
     		$member->cidb_delivery_date 	= $request->cidb_delivery_date;
     		$member->cidb_status 			= $request->cidb_status;
 
@@ -156,7 +215,7 @@ class MemberController extends Controller
             }
 
             //$member->installment_date       = $request->installment_date;
-            $member->received_amount = $received_amount;
+            $member->received_amount = $received_amount;            
             $member->save();
 
             for ($i=0; $i < count($request->diposit_date); $i++) {
@@ -196,6 +255,9 @@ class MemberController extends Controller
             $member->payment_total_amount     = $payment_total_amount;
             $member->payment_discount       = $request->payment_discount;
             $member->payment_payable      = $payment_total_amount - $request->payment_discount;
+            $member->save();
+
+            $member->due_amount = $member->payment_payable  - $received_amount;
             $member->save();
     		
             if($request->hasfile('passport_copy'))
@@ -342,13 +404,13 @@ class MemberController extends Controller
             ]);
 
 
-    	/*} catch (\Exception $e) {
+    	} catch (\Exception $e) {
     		return response()->json([
                 'status'    => 'error',
-                'message'   => 'Something went wrong.',
+                'message'   => 'Something went wrong. Please try after sometime!!!',
                 
             ]);
-    	}*/
+    	}
     }
 
     public function editmember($uid, $slug){
@@ -409,6 +471,13 @@ class MemberController extends Controller
         $member = Member::where('uid', $member_uid)->first();
         //dd($member);
         return view('admin.single-member-details', compact('member'));
+    }
+    public function singleMemberDetailsDownload($member_uid){
+        //$pdf = \PDF::loadView('admin.single-member-details', ['proposal' => $this->proposal, 'project_payment' => $this->project_payment]);
+        $member = Member::where('uid', $member_uid)->first();
+        $pdf = \PDF::loadView('download.single-member-details-download', ['member' => $member]);
+        //return $pdf->download('test.pdf');
+        return $pdf->stream();
     }
 
 }

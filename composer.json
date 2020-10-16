@@ -9,12 +9,17 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "authy/php": "^3.0",
+        "barryvdh/laravel-dompdf": "^0.8.2",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.4"
+        "laravel/ui": "^2.4",
+        "stripe/stripe-php": "^7.46",
+        "twilio/sdk": "^5.20",
+        "yajra/laravel-datatables-oracle": "^9.11"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

@@ -22,4 +22,23 @@ class Member extends Model
         return $this->hasMany(Cidb::class);
     }
 
+    public function passports(){
+        return $this->hasMany(Passport::class);
+    }
+    public function documents(){
+        return $this->hasMany(Document::class);
+    }
+    public function allVisa(){
+        return $this->hasMany(Visa::class);
+    }
+    public function allLevis(){
+        return $this->hasMany(Levi::class);
+    }
+    public function allIcards(){
+        return $this->hasMany(Icard::class);
+    }
+    public function allOthers(){
+        return $this->hasMany(Other::class);
+    }
+
 }

@@ -21,9 +21,9 @@
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
-  <div class="register-logo">
-    <a href="{{ asset('/adminlte/') }}/index2.html"><b>SM</b> Manpower M.</a>
-  </div>
+  <!--<div class="register-logo">
+    <a href="{{ asset('/adminlte/') }}/index2.html"><b>SM</b> M. Management</a>
+  </div>-->
 
   <div class="card">
     <div class="card-body register-card-body">
