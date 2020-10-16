@@ -557,9 +557,9 @@
                 <div class="col-md-4">                  
                     <label>Received Amount</label>                  
                 </div>
-                 <!-- <div class="col-md-2">                  
+                  <div class="col-md-2">                  
                     <label>Due</label>                  
-                </div> -->
+                </div>
               </div>
 
               <div class="field_wrapper_installment">
@@ -570,19 +570,19 @@
                     <div class="col-md-1 hash-col">                  
                       <p>1</p>
                     </div>
-                    <div class="col-md-5">                  
+                    <div class="col-md-4">                  
                       <div class="form-group">
                         <input type="date" name="installment_date[]" id="installment_date[]"  class="form-control installment_date_select">
                       </div>
                     </div>
-                    <div class="col-md-5">                  
+                    <div class="col-md-4">                  
                       <div class="form-group">
-                        <input type="number" name="received_amount[]" id="received_amount[]" class="form-control">
+                        <input type="number" name="received_amount[]" id="received_amount[]" class="form-control txtt" onKeyUp="SumAllInstallPAyment()">
                       </div>
                     </div>
-                     <!-- <div class="col-md-2">                  
-                      <input type="number"  name="due_amount[]" id="due_amount[]" class="form-control">
-                    </div> -->
+                    <div class="col-md-2">                  
+                      <input type="number"  name="due_amount" id="due_amount" class="form-control">
+                    </div>
                   </div>
               </div>
 
@@ -623,6 +623,21 @@ $(document).ready(function () {
     var total2 = $('#payment_discount').val();
     var totalwithgstss = Number(sum) - total2;
     $("input#payment_payable").val(totalwithgstss.toFixed(2));
+
+ }
+ function SumAllInstallPAyment() {
+     var sum = 0;
+     $(".txtt").each(function () {
+         if (!isNaN(this.value) && this.value.length != 0) {
+             sum += parseFloat(this.value);
+         }
+     });
+
+    $("#received_amount").val(sum.toFixed(2));
+
+    var total2 = $('#payment_payable').val();
+    var totalwithgstss = total2 - Number(sum);
+    $("input#due_amount").val(totalwithgstss.toFixed(2));
 
  }
  
@@ -799,7 +814,7 @@ $(document).ready(function () {
             var total_rev = $(this).val();
             var total_deposit2 = $('#payment_payable').val();
             var totalwithgst = Number(total_deposit2) - Number(total_rev);
-            $("input#permanent_diposit").val(totalwithgst.toFixed(2));
+            $("input#due_amount").val(totalwithgst.toFixed(2));
         });
 
         
@@ -957,7 +972,7 @@ $(document).ready(function () {
           if(x < maxField){ 
               x++; //Increment field counter
               var to = ++z;
-              var fieldHTML = '<div class="row"><div class="col-md-1  remove_button_installment "><a href="javascript:void(0);" class="btn btn-danger" title="Add field"><i class="glyphicon glyphicon-remove"></i></a></div><div class="col-md-1 hash-col"> <p>'+to+'</p></div><div class="col-md-5"><div class="form-group"><input type="date" name="installment_date[]" id="installment_date[]" class="form-control installment_date_select"></div></div><div class="col-md-5"><div class="form-group"><input type="number" name="received_amount[]" id="received_amount[]" class="form-control"></div></div></div></div>';
+              var fieldHTML = '<div class="row"><div class="col-md-1  remove_button_installment "><a href="javascript:void(0);" class="btn btn-danger" title="Add field"><i class="glyphicon glyphicon-remove"></i></a></div><div class="col-md-1 hash-col"> <p>'+to+'</p></div><div class="col-md-4"><div class="form-group"><input type="date" name="installment_date[]" id="installment_date[]" class="form-control installment_date_select"></div></div><div class="col-md-4"><div class="form-group"><input type="number" name="received_amount[]" id="received_amount[]" class="form-control txtt" onKeyUp="SumAllInstallPAyment()"></div></div><div class="col-md-2"><input type="number"  name="due_amount" id="due_amount" class="form-control"></div></div></div>';
 
               $(wrapper).append(fieldHTML); //Add field html
 
@@ -1058,7 +1073,7 @@ $(document).ready(function () {
       visa_expire_date: {required: true},
       birth_date: {required: true},
       phone: {required: true},
-      letter_bank: {required: true},
+      //letter_bank: {required: true},
       current_status: {required: true},
       company_id: {
           required: {
@@ -1083,7 +1098,7 @@ $(document).ready(function () {
       visa_expire_date: { required: "required" },
       birth_date: { required: "required" },
       phone: { required: "required" },
-      letter_bank: { required: "required" },
+      //letter_bank: { required: "required" },
       current_status: { required: "required" },      
       company_id: { required: "required" },
       passport_status: { required: "required" },

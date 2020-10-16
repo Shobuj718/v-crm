@@ -36,32 +36,36 @@ class MemberController extends Controller
         if(request()->ajax()){
 
             if(!empty($request->company_id)){
-               $members = DB::table('members')
-                 //->select('CustomerName', 'Gender', 'Address', 'City', 'PostalCode', 'Country')
-                 ->where('company_id', $request->company_id)
-                 //->where('Country', $request->filter_country)
-                 //->whereDate('visa_expire_date', '>', date('Y-m-d H:i:s'))
+               $members = Member::where('company_id', $request->company_id)
+                 ->where('deleted_at', NULL)
+                 //->whereDate('visa_expire_date', '>', date('Y-m-d H:i:s'))                 
                  ->get();
               }
               else
               {
-               $members = DB::table('members')->orderBy('id', 'asc')
+               $members = Member::
                  //->whereDate('visa_expire_date', '>', date('Y-m-d H:i:s'))
+                  where('deleted_at', NULL)
                  ->get();
               }
               return datatables()->of($members)
 
-              
+              ->order(function ($query) {
+                    if (request()->has('id')) {
+                        $query->orderBy('id', 'desc');
+                    }
+
+                })
 
               ->addColumn('action', function ($member) {
-                return '<div class="dropdown btn btn-" style="background-color:#c53434;"><a style="background-color:#c53434;color:#fff" class="dropdown-toggle" data-toggle="dropdown" href="#">Action</a>
+                return '<div class="dropdown btn btn-info" style="background-color:#;"><a style="background-color:#;color:#fff" class="dropdown-toggle" data-toggle="dropdown" href="#">Action</a>
                         <ul class="dropdown-menu"  role="menu" aria-labelledby="dropdownMenu">
                             <li> <a class="dropdown-item" href="'.route('single.member.details',$member->uid).'")>Show</a></li>
                             <li><a class="dropdown-item" href="#">Edit</a></li>
-                            <li><a class="dropdown-item" href="#">SMS Passport</a></li>
-                            <li><a class="dropdown-item" href="#">SMS Visa</a></li>
-                            <li><a class="dropdown-item" href="#">SMS Visa Collect</a></li>
-                            <li><a class="dropdown-item" href="#">Remove</a></li>
+                            <li><a class="dropdown-item" href="'.route('sendSms',$member->uid).'">SMS Passport</a></li>
+                            <li><a class="dropdown-item" href="'.route('sendSms',$member->uid).'">SMS Visa</a></li>
+                            <li><a class="dropdown-item" href="'.route('sendSms',$member->uid).'">SMS Visa Collect</a></li>
+                            <li><a class="dropdown-item" href="'.route('delete.member',$member->uid).'">Remove</a></li>
                         </ul>
                       </div>';
                 })
@@ -71,6 +75,15 @@ class MemberController extends Controller
 
                 ->editColumn('passport_expire', function ($member) {
                     return $member->passport_expire ? with(new \Carbon\Carbon($member->passport_expire))->format('d/M/Y') : '';
+                })
+                ->editColumn('company_name', function ($member) {
+                    return $member->company->company_name;
+                })
+                ->editColumn('company_name', function ($member) {
+                    return $member->company->company_name;
+                })
+                ->addColumn('paid', function ($member){
+                    return $member->paymentInstallmentReceived->sum('received_amount');
                 })
 
                 ->editColumn('visa_expire_date', function ($member) {
@@ -103,13 +116,16 @@ class MemberController extends Controller
         //return response()->json($request->all());          	
 
     	try {
+
+            $company = Company::where('id', $request->company_id)->first();
     		
             $user = Auth::user();
     		//return response()->json($user);
     		$member = new Member;
     		$member->uid 					= uniqid(time());
             $member->user_id                = $user->id;
-    		$member->company_id 			= $request->company_id;
+            $member->company_id             = $request->company_id;
+    		$member->company_name 			= $company->company_name;
 
     		//passport info
     		$member->passport_no 			= $request->passport_no;
@@ -165,7 +181,7 @@ class MemberController extends Controller
     		$member->passport_status 		= $request->passport_status;
 
     		//cidb info
-    		//$member->cidb_subbmision_date 	= $request->cidb_subbmision_date;
+    		$member->cidb_subbmision_date 	= $request->cidb_subbmision_date;
     		$member->cidb_delivery_date 	= $request->cidb_delivery_date;
     		$member->cidb_status 			= $request->cidb_status;
 
@@ -257,7 +273,8 @@ class MemberController extends Controller
             $member->payment_payable      = $payment_total_amount - $request->payment_discount;
             $member->save();
 
-            $member->due_amount = $member->payment_payable  - $received_amount;
+            //$member->due_amount = $member->payment_payable  - $received_amount;
+            $member->due_amount = $request->due_amount;
             $member->save();
     		
             if($request->hasfile('passport_copy'))
@@ -451,19 +468,14 @@ class MemberController extends Controller
     public function deletemember($uid){
 
     	try {
-    		$member = member::where('status', 'active')->where('uid', $uid)->first();
-
+    		$member = Member::where('uid', $uid)->first();
     		if(!empty($member)){
     			$member->delete();
-    			return redirect()->route('member.list')->with('error', 'member deleted success.');
+    			return redirect()->route('membersearch.index')->with('error', 'Member deleted successfully done !!!');
     		}  	
     	
     	} catch (\Exception $e) {
-    		return response()->json([
-                'status'    => 'error',
-                'message'   => 'Something went wrong.',
-                
-            ]);
+    		return redirect()->route('membersearch.index')->with('error', 'Something went wrong, please try again');
     	}
     }
 
@@ -471,6 +483,12 @@ class MemberController extends Controller
         $member = Member::where('uid', $member_uid)->first();
         //dd($member);
         return view('admin.single-member-details', compact('member'));
+    }
+
+    public function printMemberDetails($member_uid){
+        $member = Member::where('uid', $member_uid)->first();
+        //dd($member);
+        return view('print.single-member-prints', compact('member'));
     }
     public function singleMemberDetailsDownload($member_uid){
         //$pdf = \PDF::loadView('admin.single-member-details', ['proposal' => $this->proposal, 'project_payment' => $this->project_payment]);

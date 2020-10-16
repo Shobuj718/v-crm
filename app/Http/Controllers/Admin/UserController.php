@@ -10,8 +10,15 @@ use Illuminate\Support\Str;
 use Auth;
 use App\Models\User;
 
+use App\DataTables\UsersDataTable;
+
 class UserController extends Controller
 {
+    public function index(UsersDataTable $dataTable)
+    {
+        return $dataTable->render('users');
+    }
+
     public function addUser(){
     	return view('admin.add-user');
     }

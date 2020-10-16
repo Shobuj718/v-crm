@@ -17,6 +17,8 @@
 @section('content')
 	<div class="container-fluid">
 
+        <form method="post" action="{{ route('income.report.search') }}">
+          {{ csrf_field() }}
           <div class="row member-list-head-search-dd">
                 <div class="col-md-1"></div>
                 <div class="col-md-3">
@@ -51,6 +53,7 @@
                 </div>
           </div>
 
+        </form>
 
 
 

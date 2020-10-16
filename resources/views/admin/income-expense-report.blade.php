@@ -1,9 +1,17 @@
 @extends('master')
 
 @section('styles')
-	<!-- DataTables -->
+  <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('/adminlte/') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ asset('/adminlte/') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 @endsection
 
 @section('report', 'menu-open')
@@ -11,11 +19,11 @@
 @section('income-expense', 'active')
 
 @section('page-header')
-	<h2>Income/Expense Report</h2>
+  <h2>Income/Expense Report</h2>
 @endsection
 
 @section('content')
-	<div class="container-fluid">
+  <div class="container-fluid">
         <div class="row">
           <div class="col-12">
             
@@ -23,12 +31,14 @@
               
               <div class="card-body">
 
-              <div class="row" style="float:right;">
+              <div class="row" style="float:;">
 
-                <div class="col-md-5">
+              <div class="col-md-3"></div>
+
+                <div class="col-md-3">
                   <div class="form-group">
                     <select name="company_id" id="company_id" class="form-control select2" style="width: 100%;">
-                      <option value="" selected>Selected Company Name</option>
+                      <option value="" selected>All Company</option>
                       @foreach($companies as $company)
                       <option value="{{ $company->id ?? '' }}">{{ $company->company_name ?? '' }}</option>
                       @endforeach
@@ -36,84 +46,47 @@
                   </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-2">
                   <div class="form-group">
-                    <input type="text" name="search" id="search" class="form-control" placeholder="Write your search">
+                    <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Start date">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <input type="date" name="end_date" id="end_date"  class="form-control" placeholder="End date">
                   </div>
                 </div>
                 <div class="col-md-1">
-                  <button type="submit" class="btn btn-success">Search</button>
+                  <button type="button" name="filter" id="filter" class="btn btn-success">Search</button>
                 </div>
                 <div class="col-md-1">
-                  <button type="submit" class="btn btn-warning">Clear</button>
+                  <button type="button" name="reset" id="reset" class="btn btn-warning">Clear</button>
                 </div>
 
               </div>
 
-                <table id="" class="table table-bordered table-striped">
+                <table id="customer_data" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>SL</th>
-                    <th>Company</th>
-                    <th>Passport No</th>
-                    <th>Passport Name</th>
-                    <th>Phone</th>                    
-                    <th>Total</th>
-                    <th>Discount</th>
-                    <th>paid</th>
-                    <th>Due</th>
+                    <th>No</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Company</th>                    
+                    <th>Income</th>
+                    <th>Expense</th>
                   </tr>
                   </thead>
-                  <tbody>
-                  @php
-                    $i = 1;
-                    $total_due = 0;
-                  @endphp
-                  
-                  @foreach($members as $key => $member)
-
-                  @php
-                  $total_due += $member->total_deposit;
-                  @endphp
-
-                    <tr>
-                      <td>{{ $member->id }}</td>
-                      <td>{{ $member->company->company_name ?? '' }}</td>
-                      <td>{{ $member->passport_no ?? '' }}</td>
-                      <td>{{ $member->passport_surname ?? '' }}</td>
-                      <td>{{ $member->phone ?? '' }}</td>
-                      <td>{{ $member->total_deposit }}</td>
-                      <td>{{ $member->diposit_discount ?? '' }}</td>
-                      <td>{{ $member->permanent_diposit ?? '' }}</td>
-                      <td>{{ $member->total_deposit ?? '' }}</td>                      
-                    </tr>
-
-                    
-
-                  @endforeach 
-                  <tr>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>                    
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th>{{ number_format($total_due,2)  }}</th>
-                    </tr>                 
-                  </tfoot>
+                 
                 </table>
-                <div class="report-items-navigation">
-                  {{$members->links()}}
-                </div>
 
                 <div class="row no-print">
                 <div class="col-12">
-                  <a href="#" target="_blank" class="btn btn-default float-right"><i class="fas fa-print"></i> Print</a>
-                  <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Exel</button>
+                  <a href="invoice-print.html" target="_blank" class="btn btn-warning float-right"><i class="fas fa-print"></i> Print</a>
                   <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> PDF</button>
+                  <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Exel</button>
+                  
                 </div>
               </div>
 
@@ -131,11 +104,99 @@
 
 @section('scripts')
 
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
+
+<script>
+$(document).ready(function(){
+
+    fill_datatable();
+
+    function fill_datatable(company_id = '', start_date = '', end_date = '')
+    {
+        var dataTable = $('#customer_data').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax:{
+                url: "{{ route('income.expense.report') }}",
+                data:{company_id:company_id, start_date:start_date, end_date:end_date}
+            },
+            columns: [
+                {
+                    data:'id',
+                    name:'id'
+                },
+                {
+                    data:'passport_no',
+                    name:'passport_no'
+                },
+                {
+                    data:'created_at',
+                    name:'created_at'
+                },
+                {
+                    data:'category_name',
+                    name:'category_name'
+                },
+                {
+                    data:'company_name',
+                    name:'company_name'
+                },
+                {
+                    data:'received_amount',
+                    name:'received_amount'
+                },
+                {
+                    data:'expense',
+                    name:'expense'
+                },
+                             
+                
+            ]
+        });
+    }
+
+    $('#filter').click(function(){
+        var company_id = $('#company_id').val();
+        var start_date = $('#start_date').val();
+        var end_date   = $('#end_date').val();
+        //alert(company_id)
+        if(company_id != '' || start_date != '' || end_date != '')
+        {
+            $('#customer_data').DataTable().destroy();
+            fill_datatable(company_id, start_date, end_date);
+        }
+        else
+        {
+            alert('Select any option');
+        }
+    });
+
+    $('#reset').click(function(){
+        $('#company_id').val('');
+        $('#start_date').val('');
+        $('#end_date').val('');
+        //fill_datatable();
+    });
+
+});
+</script>
+
 <!-- DataTables -->
 <script src="{{ asset('/adminlte/') }}/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{{ asset('/adminlte/') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('/adminlte/') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="{{ asset('/adminlte/') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+
 
 <script>
   $(function () {

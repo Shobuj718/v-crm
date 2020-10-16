@@ -31,7 +31,7 @@
               
               <div class="card-body">
 
-              <div class="row" style="float:;">
+            <div class="row" style="float:;">
 
               <div class="col-md-3"></div>
 
@@ -63,7 +63,7 @@
                   <button type="button" name="reset" id="reset" class="btn btn-warning">Clear</button>
                 </div>
 
-              </div>
+            </div>
 
                 <table id="customer_data" class="table table-bordered table-striped">
                   <thead>
@@ -104,6 +104,16 @@
 
 @section('scripts')
 
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
 
 <script>
 $(document).ready(function(){
@@ -168,7 +178,7 @@ $(document).ready(function(){
         }
     });
 
-    $('#clear').click(function(){
+    $('#reset').click(function(){
         $('#company_id').val('');
         $('#start_date').val('');
         $('#end_date').val('');
@@ -183,6 +193,8 @@ $(document).ready(function(){
 <script src="{{ asset('/adminlte/') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('/adminlte/') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="{{ asset('/adminlte/') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+
 
 <script>
   $(function () {

@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('styles')
-	<!-- DataTables -->
+    <!-- DataTables -->
   <link rel="stylesheet" href="<p>{{  asset('/adminlte/') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<p>{{  asset('/adminlte/') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 @endsection
@@ -11,11 +11,11 @@
 @section('member-list', 'active')
 
 @section('page-header')
-	<h2>Member Details</h2>
+    <h2>Member Details Print</h2>
 @endsection
 
 @section('content')
-	<div class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
           <div class="col-12">
             
@@ -26,7 +26,7 @@
             
               <div class="row invoice-info">
                 <div class="col-sm-12 invoice-col member-list-itemss">
-
+                    <h2>Member Details</h2>
                     <div class="memberr-listt-itemss"> <h5>Passport Status</h5><span>:</span> <p>{{  $member->passport_status ?? '' }}</p> </div>
 
 
@@ -181,7 +181,7 @@
                   <a href="{{ route('print.member.details', $member->uid) }}" target="_blank" class="btn btn-info"><i class="fas fa-print"></i> Print</a>
                   <button type="button" class="btn btn-success float-left"><i class="far fa-credit-card"></i> Excel</button>
                   <a href="{{ route('single.member.details.download', $member->uid) }}" target="_blank" class="btn btn-primary float-left" style="margin-left</h5> <span>:</span> 5px;"><i class="fas fa-download"></i> PDF</a>
-                  
+                  <!-- <a href="#" onclick="window.open('MyPDF.pdf', '_blank', 'fullscreen=yes'); return false;">MyPDF</a> -->
                 </div>
               </div>
             </div>
@@ -224,7 +224,7 @@
 </script>
 
 <script type="text/javascript"> 
-  //window.addEventListener("load", window.print());
+  window.addEventListener("load", window.print());
 </script>
 
 @endsection

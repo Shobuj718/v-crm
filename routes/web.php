@@ -19,7 +19,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+use App\DataTables\UsersDataTable;
 
+Route::get('/userss', function(UsersDataTable $dataTable) {
+    return $dataTable->render('users.index');
+});
+
+Route::get('/users', 'Admin\UserController@index');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
@@ -53,7 +59,9 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::post('/update-member/{uid}', 'MemberController@updateMember')->name('update.member');
 		Route::get('/delete-member/{uid}', 'MemberController@deleteMember')->name('delete.member');
 		Route::get('/single-member-details/{uid}', 'MemberController@singleMemberDetails')->name('single.member.details');
+
 		Route::get('/single-member-details-download/{uid}', 'MemberController@singleMemberDetailsDownload')->name('single.member.details.download');
+		Route::get('/print-member-details/{uid}', 'MemberController@printMemberDetails')->name('print.member.details');
 
 		//user all route
 		Route::get('/add-user', 'UserController@addUser')->name('add.user');
@@ -62,6 +70,8 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('/edit-user/{uid}', 'UserController@editUser')->name('edit.user');
 		Route::post('/update-user/{uid}', 'UserController@updateUser')->name('update.user');
 		Route::get('/delete-user/{uid}', 'UserController@deleteUser')->name('delete.user');
+
+		//Route::get('/users', 'UserController@index');
 
 		//category all route
 		Route::get('/add-category', 'CategoryController@addCategory')->name('add.category');

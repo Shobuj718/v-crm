@@ -17,6 +17,9 @@ class Member extends Model
     public function paymentInstallmentReceived(){
         return $this->hasMany(PaymentInstallmentReceived::class);
     }
+    public function PaymentCategoryAmount(){
+        return $this->hasMany(PaymentCategoryAmount::class);
+    }
 
     public function cidbs(){
         return $this->hasMany(Cidb::class);

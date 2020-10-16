@@ -29,32 +29,44 @@
           <div class="col-12">
             
             <div class="card">
-              
-              <div class="card-body rel-position">
 
-              <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <select name="company_id" id="company_id" class="form-control select2" style="width: 100%;">
-                          <option value="" selected>All Company</option>
-                          @foreach($companies as $company)
-                          <option value="{{ $company->id ?? '' }}">{{ $company->company_name ?? '' }}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                    
-                    
-                    <div class="form-group" align="center">
-                        <button type="button" name="filter" id="filter" class="btn btn-info">Filter</button>
-
-                        <button type="button" name="reset" id="reset" class="btn btn-default">Reset</button>
-                    </div>
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
                 </div>
-                <div class="col-md-4"></div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
+              
+              <div class="card-body ">
+
+              <div class="row" style="float:;">
+
+              <div class="col-md-7"></div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <select name="company_id" id="company_id" class="form-control select2" style="width: 100%;">
+                      <option value="" selected>All Company</option>
+                      @foreach($companies as $company)
+                      <option value="{{ $company->id ?? '' }}">{{ $company->company_name ?? '' }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-1">
+                  <button type="button" name="filter" id="filter" class="btn btn-success">Search</button>
+                </div>
+                <div class="col-md-1">
+                  <button type="button" name="reset" id="reset" class="btn btn-warning">Clear</button>
+                </div>
+                
+
             </div>
               
-                 <div class="table-responsive">
                 <table id="customer_data" class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -74,7 +86,6 @@
                   </thead>
                   
                 </table>
-             </div> 
 
             </div>
 
@@ -142,8 +153,8 @@ $(document).ready(function(){
                     name:'payment_discount'
                 },
                 {
-                    data:'payment_payable',
-                    name:'payment_payable'
+                    data:'paid',
+                    name:'paid'
                 },
                 {
                     data:'due_amount',
